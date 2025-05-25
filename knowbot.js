@@ -88,7 +88,7 @@ class Knowbot {
     if (!document.getElementById(this.id.iframe)) {
       let iframe = document.createElement("iframe");
       iframe.id = this.id.iframe;
-      iframe.src = this.options.serverUrl;
+      iframe.src = this.options.url;
       iframe.setAttribute("aria-hidden", "true");
       this.el.iframeWrapper.appendChild(iframe);
     }
@@ -186,7 +186,7 @@ class Knowbot {
 
 // Default options.
 Knowbot.defaults = {
-  serverUrl: "",
+  url: "",
   customButton: ".knowbot",
   button: "Ask Me !",
   buttonAriaLabel: "Ask Knowbot a question",

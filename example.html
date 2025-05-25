@@ -13,9 +13,8 @@
         <script>
             document.addEventListener("DOMContentLoaded", () => {
                 const knowbot = new Knowbot({
-                    serverUrl:
-                        "https://knowbot.uk/ilm?embed=true&embed_options=hide_toolbar&name=legacymanagement.org.uk",
-                    button: "Ask Me !",
+                    url: "https://knowbot.uk/ilm?embed=true&embed_options=hide_toolbar&name=legacymanagement.org.uk",
+                    button: "Ask a Question",
                     buttonBgColor: "blue",
                     buttonWindowMinHeight: 600,
                     buttonWindowScrollDistance: 150,
@@ -24,7 +23,12 @@
         </script>
     </head>
     <body>
-        <h1>Knowbot test</h1>
-        <p>Testing</p>
+        <h1>Example</h1>
+        <p>This is an example page that will display the floating button.</p>
+        <p>You can also open Knowbot:</p>
+        <ul>
+            <li><a href="#knowbot">with a link</a></li>
+            <li><button class="knowbot">with a button</button></li>
+        </ul>
     </body>
 </html>

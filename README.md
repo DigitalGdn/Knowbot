@@ -12,6 +12,6 @@ Assign the class `.knowbot` to connect it to Knowbot.
 
 We handle the logic but the styling of the button is up to you.
 
-Alternatively, you can set the link to `#ask-knowbot`.
+Alternatively, you can set the link to `#knowbot`.
 
 ### Both static and floating buttons
