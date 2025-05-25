@@ -20,11 +20,11 @@ Alternatively, you can set the link to `#knowbot`.
 
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |
-| `url` | `url` | `''` | **Required** server URL (provided by MHF) |
-| `button` | `text` \| `boolean` | `Ask Me !` | Text to show in the floating button or false to disable |
+| `url` | `url` | `''` | Server URL (provided by MHF) - **Required** |
+| `button` | `text` \| `boolean` | `'Ask Me !'` | Text to show in the floating button or false to disable |
 | `buttonAriaLabel` | `string` | `'Ask Knowbot a question'` | Floating button screenreader friendly text |
-| `buttonTextColor` | `url` | `'#ffffff'` | Button text colour |
-| `buttonTextColorHover` | `url` | `'#2f2b36'` | Button text colour on hover |
+| `buttonTextColor` | `string` | `'#ffffff'` | Button text colour |
+| `buttonTextColorHover` | `string` | `'#2f2b36'` | Button text colour on hover |
 | `buttonBgColor` | `string` | `'#2f2b36'` | Button background colour |
 | `buttonBgColorHover` | `string` | `'#f7f7f7'` | Button background colour on hover |
 | `buttonWindowMinHeight` | `number` | `600` | The window has to be at least this tall to show the floating button |
