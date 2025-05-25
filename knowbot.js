@@ -40,16 +40,29 @@ class Knowbot {
     this.el.button = document.getElementById(this.id.button);
     this.el.closeButton = document.getElementById(this.id.closeButton);
     this.el.iframeWrapper = document.getElementById(this.id.iframeWrapper);
+    this.el.launchers = document.querySelectorAll(
+      '[href="#knowbot"], .knowbot',
+    );
 
     // Set up event listeners.
     this._eventListeners();
   }
 
   _eventListeners() {
-    // Show the iframe when the button is clicked.
+    // Open Knowbot when the floating button is clicked.
     if (this.options.button) {
       this.el.button.addEventListener("click", () => {
         this._openKnowbot();
+      });
+    }
+
+    // Open Knowbot when a launcher button or link is clicked.
+    if (this.el.launchers) {
+      this.el.launchers.forEach((launcher) => {
+        launcher.addEventListener("click", (e) => {
+          this._openKnowbot();
+          e.preventDefault();
+        });
       });
     }
 
@@ -146,7 +159,7 @@ class Knowbot {
                     role="button"
                     tabindex="0"
                     style="display: none"
-                    aria-label="${this.options.closeButtonAriaLabel}"
+                    aria-label="${this.options.closeAriaLabel}"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -164,39 +177,20 @@ class Knowbot {
 
     // Add HTML to the end of the document body.
     document.body.insertAdjacentHTML("beforeend", html);
-
-    // Set up static buttons if enabled.
-    /*if (this.options.staticButton) {
-      let staticButtons = document.querySelectorAll(
-        this.options.staticButtonSelector,
-      );
-      staticButtons.forEach((button) => {
-        button.innerHTML = this.options.staticbutton;
-        button.classList.add("knowbot-open");
-
-        // Add click event listener to static buttons
-        button.addEventListener("click", (event) => {
-          this._openKnowbot();
-          event.preventDefault();
-        });
-      });
-      }*/
   }
 }
 
 // Default options.
 Knowbot.defaults = {
-  url: "",
-  customButton: ".knowbot",
-  button: "Ask Me !",
-  buttonAriaLabel: "Ask Knowbot a question",
+  url: "", // Required server URL
+  button: "Ask Me !", // text or false to disable
+  buttonAriaLabel: "Ask Knowbot a question", // accessibile text for screen readers
   buttonTextColor: false,
   buttonTextColorHover: false,
   buttonBgColor: false,
   buttonBgColorHover: false,
   buttonWindowMinHeight: 600,
   buttonWindowScrollDistance: 150,
-  closeText: "Close",
   closeAriaLabel: "Close Knowbot",
 };
 
