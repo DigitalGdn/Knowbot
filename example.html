@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Knowbot Example</title>
+
+        <!-- Knowbot CSS -->
+        <link rel="stylesheet" href="/knowbot.css" media="screen" />
+
+        <!-- Knowbot JavaScript -->
+        <script src="/knowbot.js"></script>
+
+        <!-- Knowbot Configuration -->
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const knowbot = new Knowbot({
+                    serverUrl:
+                        "https://knowbot.uk/ilm?embed=true&embed_options=hide_toolbar&name=legacymanagement.org.uk",
+                    button: "Ask Me !",
+                    buttonBgColor: "blue",
+                    buttonWindowMinHeight: 600,
+                    buttonWindowScrollDistance: 150,
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <h1>Knowbot test</h1>
+        <p>Testing</p>
+    </body>
+</html>

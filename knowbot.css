@@ -1,0 +1,137 @@
+:root {
+    --knowbot-button-font-family: sans-serif;
+    --knowbot-button-font-weight: bold;
+    --knowbot-button-font-size: 16px;
+    --knowbot-button-font-size-lg: 18px;
+    --knowbot-button-radius: 10px;
+    --knowbot-button-bg: #2f2b36;
+    --knowbot-button-bg-hover: #f7f7f7;
+    --knowbot-button-border: #2f2b36;
+    --knowbot-button-border-hover: #2f2b36;
+    --knowbot-button-text: #ffffff;
+    --knowbot-button-text-hover: #2f2b36;
+    --knowbot-iframe-border: #777777;
+}
+
+#knowbot-container {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    display: block;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    z-index: 100000;
+    pointer-events: none;
+}
+
+#knowbot-iframe-wrapper {
+    width: 100%;
+    height: 80%;
+    max-width: 570px;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    align-self: end;
+    justify-self: end;
+    display: none;
+    position: relative;
+    transition: opacity 0.25s ease;
+    pointer-events: auto;
+}
+
+#knowbot-iframe {
+    width: 100%;
+    height: 100%;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 0.625rem 1.875rem rgba(2, 2, 3, 0.28);
+    border: 1px solid var(--knowbot-iframe-border);
+}
+
+#knowbot-button {
+    font-family: var(--knowbot-button-font-family);
+    font-size: var(--knowbot-button-font-size);
+    padding: 0.95rem 1.3rem 0.85rem;
+    font-weight: var(--knowbot-button-font-weight);
+    border-radius: var(--knowbot-button-radius);
+    border: 1px solid var(--knowbot-button-border);
+    box-shadow: 0 0.3rem 0.6rem rgba(2, 2, 3, 0.2);
+    background-color: var(--knowbot-button-bg);
+    color: var(--knowbot-button-text);
+    transition:
+        opacity 250ms,
+        transform 250ms,
+        background 250ms;
+    text-wrap: nowrap;
+    display: flex;
+    gap: 0.5rem;
+    cursor: pointer;
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 100001;
+    opacity: 0;
+    pointer-events: none;
+}
+
+body.knowbot-active #knowbot-button {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#knowbot-button:hover,
+#knowbot-button:focus-within {
+    background-color: var(--knowbot-button-bg-hover);
+    color: var(--knowbot-button-text-hover);
+    border: 1px solid var(--knowbot-button-border-hover);
+}
+
+#knowbot-close {
+    right: 1rem;
+    top: 1rem;
+    position: absolute;
+    color: #444;
+    line-height: 1;
+    z-index: 100002;
+    cursor: pointer;
+}
+
+#knowbot-close svg {
+    width: 22px;
+    height: 22px;
+}
+
+#knowbot-close:hover {
+    color: black;
+}
+
+/* Mobile */
+@media (max-width: 590px) {
+    #knowbot-iframe-wrapper {
+        height: 100%;
+        margin-right: 0;
+        margin-bottom: 0;
+        justify-self: center;
+        background: white;
+    }
+
+    #knowbot iframe {
+        height: 100%;
+        border-radius: 0;
+        box-shadow: none;
+        border: none;
+    }
+
+    #knowbot-close {
+        top: 1.5rem;
+    }
+}
+
+/* Desktop */
+@media (min-width: 1300px) {
+    #knowbot-button {
+        font-size: var(--knowbot-button-font-size-lg);
+        padding: 1.1rem 1.45rem 1rem;
+    }
+}
