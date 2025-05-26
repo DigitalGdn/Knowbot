@@ -144,7 +144,13 @@ class Knowbot {
     // Add floating button if enabled.
     if (this.options.button) {
       html += `
-        <knowbot-button id="${this.id.button}" role="button" tabindex="0" aria-label="${this.options.buttonAriaLabel}">
+        <knowbot-button
+            id="${this.id.button}"
+            role="button"
+            tabindex="0"
+            aria-label="${this.options.buttonAriaLabel}"
+            style="--knowbot-button-bg: ${this.options.buttonBgColor}; --knowbot-button-bg-hover: ${this.options.buttonBgColorHover}; --knowbot-button-text: ${this.options.buttonTextColor}; --knowbot-button-text-hover: ${this.options.buttonTextColorHover};"
+        >
             <span>${this.options.button}</span>
         </knowbot-button>
       `;
@@ -175,6 +181,18 @@ class Knowbot {
         </div>
     `;
 
+    // CSS variables
+    html += `
+        <style>
+            :root {
+                --knowbot-button-bg-color: ${this.options.buttonBgColor};
+                --knowbot-button-bg-color-hover: ${this.options.buttonBgColorHover};
+                --knowbot-button-text-color: ${this.options.buttonTextColor};
+                --knowbot-button-text-color-hover: ${this.options.buttonTextColorHover};
+            }
+        </style>
+    `;
+
     // Add HTML to the end of the document body.
     document.body.insertAdjacentHTML("beforeend", html);
   }
@@ -185,10 +203,10 @@ Knowbot.defaults = {
   url: "", // Required server URL
   button: "Ask Me !", // text or false to disable
   buttonAriaLabel: "Ask Knowbot a question", // accessibile text for screen readers
-  buttonTextColor: false,
-  buttonTextColorHover: false,
-  buttonBgColor: false,
-  buttonBgColorHover: false,
+  buttonTextColor: "#f7f7f7",
+  buttonTextColorHover: "#2f2b36",
+  buttonBgColor: "#2f2b36",
+  buttonBgColorHover: "#f7f7f7",
   buttonWindowMinHeight: 600,
   buttonWindowScrollDistance: 150,
   closeAriaLabel: "Close Knowbot",
