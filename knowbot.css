@@ -1,14 +1,3 @@
-:root {
-    --knowbot-button-font-family: sans-serif;
-    --knowbot-button-font-weight: bold;
-    --knowbot-button-font-size: 16px;
-    --knowbot-button-font-size-lg: 18px;
-    --knowbot-button-radius: 10px;
-    --knowbot-button-border: #2f2b36;
-    --knowbot-button-border-hover: #2f2b36;
-    --knowbot-iframe-border: #777777;
-}
-
 #knowbot-container {
     inset: 0;
     width: 100%;
@@ -40,21 +29,21 @@
     width: 100%;
     height: 100%;
     background: white;
-    border-radius: 20px;
-    box-shadow: 0 0.625rem 1.875rem rgba(2, 2, 3, 0.28);
-    border: 1px solid var(--knowbot-iframe-border);
+    border-radius: var(--knowbot-iframe-border-radius);
+    box-shadow: var(--knowbot-iframe-box-shadow);
+    border: 1px solid var(--knowbot-iframe-border-color);
 }
 
 #knowbot-button {
     font-family: var(--knowbot-button-font-family);
     font-size: var(--knowbot-button-font-size);
-    padding: 0.95rem 1.3rem 0.85rem;
+    padding: var(--knowbot-button-padding);
     font-weight: var(--knowbot-button-font-weight);
-    border-radius: var(--knowbot-button-radius);
-    border: 1px solid var(--knowbot-button-border);
-    box-shadow: 0 0.3rem 0.6rem rgba(2, 2, 3, 0.2);
-    background-color: var(--knowbot-button-bg);
-    color: var(--knowbot-button-text);
+    border-radius: var(--knowbot-button-border-radius);
+    border: 1px solid var(--knowbot-button-border-color);
+    box-shadow: var(--knowbot-button-box-shadow);
+    background-color: var(--knowbot-button-bg-color);
+    color: var(--knowbot-button-text-color);
     transition:
         opacity 250ms,
         transform 250ms,
@@ -80,7 +69,7 @@ body.knowbot-active #knowbot-button {
 #knowbot-button:focus-within {
     background-color: var(--knowbot-button-bg-hover);
     color: var(--knowbot-button-text-hover);
-    border: 1px solid var(--knowbot-button-border-hover);
+    border: 1px solid var(--knowbot-button-border-color-hover);
 }
 
 #knowbot-close {
@@ -127,7 +116,7 @@ body.knowbot-active #knowbot-button {
 /* Desktop */
 @media (min-width: 1300px) {
     #knowbot-button {
-        font-size: var(--knowbot-button-font-size-lg);
-        padding: 1.1rem 1.45rem 1rem;
+        font-size: var(--knowbot-button-font-size-large);
+        padding: var(--knowbot-button-padding-large);
     }
 }

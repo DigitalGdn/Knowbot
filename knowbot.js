@@ -149,7 +149,7 @@ class Knowbot {
             role="button"
             tabindex="0"
             aria-label="${this.options.buttonAriaLabel}"
-            style="--knowbot-button-bg: ${this.options.buttonBgColor}; --knowbot-button-bg-hover: ${this.options.buttonBgColorHover}; --knowbot-button-text: ${this.options.buttonTextColor}; --knowbot-button-text-hover: ${this.options.buttonTextColorHover};"
+            style=""
         >
             <span>${this.options.button}</span>
         </knowbot-button>
@@ -183,12 +183,28 @@ class Knowbot {
 
     // CSS variables
     html += `
-        <style>
-            :root {
-                --knowbot-button-bg-color: ${this.options.buttonBgColor};
-                --knowbot-button-bg-color-hover: ${this.options.buttonBgColorHover};
-                --knowbot-button-text-color: ${this.options.buttonTextColor};
-                --knowbot-button-text-color-hover: ${this.options.buttonTextColorHover};
+        <style type="text/css">
+            #knowbot-button {
+              --knowbot-button-bg-color: ${this.options.buttonBgColor};
+              --knowbot-button-bg-color-hover: ${this.options.buttonBgColorHover};
+              --knowbot-button-text-color: ${this.options.buttonTextColor};
+              --knowbot-button-text-color-hover: ${this.options.buttonTextColorHover};
+              --knowbot-button-font-family: ${this.options.buttonFontFamily};
+              --knowbot-button-font-weight: ${this.options.buttonFontWeight};
+              --knowbot-button-font-size: ${this.options.buttonFontSize};
+              --knowbot-button-font-size-large: ${this.options.buttonFontSizeLarge};
+              --knowbot-button-border-color: ${this.options.buttonBorderColor};
+              --knowbot-button-border-color-hover: ${this.options.buttonBorderColorHover};
+              --knowbot-button-border-radius: ${this.options.buttonBorderRadius};
+              --knowbot-button-box-shadow: ${this.options.buttonBoxShadow};
+              --knowbot-button-padding: ${this.options.buttonPadding};
+              --knowbot-button-padding-large: ${this.options.buttonPaddingLarge};
+            }
+
+            #knowbot-iframe {
+              --knowbot-iframe-border-color: ${this.options.iframeBorderColor};
+              --knowbot-iframe-border-radius: ${this.options.iframeBorderRadius};
+              --knowbot-iframe-box-shadow: ${this.options.iframeBoxShadow};
             }
         </style>
     `;
@@ -207,6 +223,19 @@ Knowbot.defaults = {
   buttonTextColorHover: "#2f2b36",
   buttonBgColor: "#2f2b36",
   buttonBgColorHover: "#f7f7f7",
+  buttonFontFamily: "sans-serif",
+  buttonFontWeight: "bold",
+  buttonFontSize: "16px",
+  buttonFontSizeLarge: "18px",
+  buttonBorderColor: "#2f2b36",
+  buttonBorderColorHover: "#2f2b36",
+  buttonBorderRadius: "10px",
+  buttonBoxShadow: "0 0.3rem 0.6rem rgba(2, 2, 3, 0.2)",
+  buttonPadding: "0.95rem 1.3rem 0.85rem",
+  buttonPaddingLarge: "1.1rem 1.5rem 1rem",
+  iframeBorderColor: "#777777",
+  iframeBorderRadius: "20px",
+  iframeBoxShadow: "0 0.625rem 1.875rem rgba(2, 2, 3, 0.28)",
   buttonWindowMinHeight: 600,
   buttonWindowScrollDistance: 150,
   closeAriaLabel: "Close Knowbot",
