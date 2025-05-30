@@ -258,7 +258,7 @@ Knowbot.defaults = {
   iframeBorderColor: "#777777",
   iframeBorderRadius: "20px",
   iframeBoxShadow: "0 0.625rem 1.875rem rgba(2, 2, 3, 0.28)",
-  buttonWindowMinHeight: 600,
+  buttonWindowMinHeight: 400,
   buttonWindowScrollDistance: 150,
   closeAriaLabel: "Close Knowbot",
 };
