@@ -28,6 +28,9 @@ class Knowbot {
     // Cache DOM element references.
     this.el = {};
 
+    // Timer.
+    this.timer = undefined;
+
     // Initialise the Knowbot instance.
     this._init();
   }
@@ -39,6 +42,7 @@ class Knowbot {
     // Cache element references after rendering.
     this.el.button = document.getElementById(this.id.button);
     this.el.closeButton = document.getElementById(this.id.closeButton);
+    this.el.iframe = undefined; // Dynamically set later.
     this.el.iframeWrapper = document.getElementById(this.id.iframeWrapper);
     this.el.launchers = document.querySelectorAll(
       '[href="#knowbot"], .knowbot',
@@ -98,12 +102,16 @@ class Knowbot {
 
   _openKnowbot() {
     // Create iframe if it doesn't already exist.
-    if (!document.getElementById(this.id.iframe)) {
+    if (!this.el.iframe) {
       let iframe = document.createElement("iframe");
       iframe.id = this.id.iframe;
       iframe.src = this.options.url;
       iframe.setAttribute("aria-hidden", "true");
       this.el.iframeWrapper.appendChild(iframe);
+      this.el.iframe = iframe;
+    } else if (this.el.iframe.src !== this.options.url) {
+      // Restore iframe src if it was reset by timer.
+      this.el.iframe.src = this.options.url;
     }
 
     // Show iframe wrapper.
@@ -119,6 +127,9 @@ class Knowbot {
 
     // Disable background scrolling.
     document.body.style.overflow = "hidden";
+
+    // Start timer.
+    this._startOrResetTimer();
   }
 
   _closeKnowbot() {
@@ -211,6 +222,15 @@ class Knowbot {
 
     // Add HTML to the end of the document body.
     document.body.insertAdjacentHTML("beforeend", html);
+  }
+
+  _startOrResetTimer() {
+    clearTimeout(this.timer);
+    this.timer = setTimeout(function () {
+      // On timeout clear iframe connection and close Knowbot.
+      document.getElementById(this.id.iframe).src = "about:blank";
+      this._closeKnowbot();
+    }, 3600000); // 60 minutes.
   }
 }
 
