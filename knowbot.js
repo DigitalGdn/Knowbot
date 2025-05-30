@@ -226,10 +226,12 @@ class Knowbot {
 
   _startOrResetTimer() {
     clearTimeout(this.timer);
-    this.timer = setTimeout(function () {
+    this.timer = setTimeout(() => {
       // On timeout clear iframe connection and close Knowbot.
-      document.getElementById(this.id.iframe).src = "about:blank";
-      this._closeKnowbot();
+      if (this.el.iframe) {
+        this.el.iframe.src = "about:blank";
+        this._closeKnowbot();
+      }
     }, 3600000); // 60 minutes.
   }
 }
