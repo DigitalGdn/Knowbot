@@ -23,9 +23,9 @@ Add this code to your website HTML within `<head>`:
 
 ## Floating button
 
-By default we include a floating button in the bottom right.
+By default a floating button is displayed in the bottom right.
 
-You can customise or disable this (see configuration options).
+You can customise or disable this. Please see [configuration options](#configuration-options).
 
 ## Custom button/link
 
@@ -35,7 +35,7 @@ To connect it to Knowbot assign the class `.knowbot` or set the link to `#knowbo
 
 We handle the logic but the styling of the button is up to you.
 
-## Configuration Options
+## Configuration options
 
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |
