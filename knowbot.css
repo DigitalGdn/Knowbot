@@ -117,6 +117,5 @@ body.knowbot-active #knowbot-button {
 @media (min-width: 1300px) {
     #knowbot-button {
         font-size: var(--knowbot-button-font-size-large);
-        padding: var(--knowbot-button-padding-large);
     }
 }

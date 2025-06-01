@@ -80,8 +80,8 @@ class Knowbot {
     // Set up scroll position based display.
     window.addEventListener("scroll", () => {
       if (
-        window.pageYOffset >= this.options.buttonWindowScrollDistance ||
-        window.innerHeight >= this.options.buttonWindowMinHeight
+        window.pageYOffset >= this.options.buttonConditionScrollDistance ||
+        window.innerHeight >= this.options.buttonConditionWindowMinHeight
       ) {
         document.body.classList.add("knowbot-active");
       } else {
@@ -91,8 +91,8 @@ class Knowbot {
 
     // Initial scroll check.
     if (
-      window.pageYOffset >= this.options.buttonWindowScrollDistance ||
-      window.innerHeight >= this.options.buttonWindowMinHeight
+      window.pageYOffset >= this.options.buttonConditionScrollDistance ||
+      window.innerHeight >= this.options.buttonConditionWindowMinHeight
     ) {
       document.body.classList.add("knowbot-active");
     } else {
@@ -209,7 +209,6 @@ class Knowbot {
               --knowbot-button-border-radius: ${this.options.buttonBorderRadius};
               --knowbot-button-box-shadow: ${this.options.buttonBoxShadow};
               --knowbot-button-padding: ${this.options.buttonPadding};
-              --knowbot-button-padding-large: ${this.options.buttonPaddingLarge};
             }
 
             #knowbot-iframe {
@@ -253,13 +252,12 @@ Knowbot.defaults = {
   buttonBorderColorHover: "#2f2b36",
   buttonBorderRadius: "10px",
   buttonBoxShadow: "0 0.3rem 0.6rem rgba(2, 2, 3, 0.2)",
-  buttonPadding: "0.95rem 1.3rem 0.85rem",
-  buttonPaddingLarge: "1.1rem 1.5rem 1rem",
+  buttonPadding: "0.9em 1.3rem 0.8em",
+  buttonConditionWindowMinHeight: 400,
+  buttonConditionScrollDistance: 150,
   iframeBorderColor: "#777777",
   iframeBorderRadius: "20px",
   iframeBoxShadow: "0 0.625rem 1.875rem rgba(2, 2, 3, 0.28)",
-  buttonWindowMinHeight: 400,
-  buttonWindowScrollDistance: 150,
   closeAriaLabel: "Close Knowbot",
 };
 
