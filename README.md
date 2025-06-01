@@ -27,7 +27,7 @@ Alternatively, you can set the link to `#knowbot`.
 | `buttonTextColorHover` | `string` | `'#2f2b36'` | Button text colour on hover |
 | `buttonBgColor` | `string` | `'#2f2b36'` | Button background colour |
 | `buttonBgColorHover` | `string` | `'#f7f7f7'` | Button background colour on hover |
-| `buttonFontFamily` | `string` | `'sans-serif'` | Button font family |
+| `buttonFontFamily` | `string` | `'inherit'` | Button font family, defaults to your page body font |
 | `buttonFontWeight` | `string` | `'bold'` | Button font weight |
 | `buttonFontSize` | `string` | `'16px'` | Button font size for small/medium screens |
 | `buttonFontSizeLarge` | `string` | `'18px'` | Button font size for large screens |
