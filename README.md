@@ -1,10 +1,33 @@
 # Knowbot
 
-## Examples
+## Installation
 
-### Floating button
+Add this code to your website HTML within `<head>`:
 
-### Custom button
+```
+<!-- Knowbot CSS -->
+<link rel="stylesheet" href="./knowbot.css" media="screen" />
+
+<!-- Knowbot JavaScript -->
+<script src="./knowbot.js"></script>
+
+<!-- Knowbot Configuration -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const knowbot = new Knowbot({
+            url: "Server URL provided by MHF",
+        });
+    });
+</script>
+```
+
+## Floating button
+
+By default we include a floating button in the bottom right.
+
+You can disable this by setting the `button` option to `false`.
+
+## Custom button
 
 You can add your own link or button to your website header or page content.
 
@@ -13,8 +36,6 @@ Assign the class `.knowbot` to connect it to Knowbot.
 We handle the logic but the styling of the button is up to you.
 
 Alternatively, you can set the link to `#knowbot`.
-
-### Both static and floating buttons
 
 ## Configuration Options
 
