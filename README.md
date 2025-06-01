@@ -25,17 +25,15 @@ Add this code to your website HTML within `<head>`:
 
 By default we include a floating button in the bottom right.
 
-You can disable this by setting the `button` option to `false`.
+You can customise or disable this (see configuration options).
 
-## Custom button
+## Custom button/link
 
 You can add your own link or button to your website header or page content.
 
-Assign the class `.knowbot` to connect it to Knowbot.
+To connect it to Knowbot assign the class `.knowbot` or set the link to `#knowbot`.
 
 We handle the logic but the styling of the button is up to you.
-
-Alternatively, you can set the link to `#knowbot`.
 
 ## Configuration Options
 
