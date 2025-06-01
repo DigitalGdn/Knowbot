@@ -27,6 +27,18 @@ Alternatively, you can set the link to `#knowbot`.
 | `buttonTextColorHover` | `string` | `'#2f2b36'` | Button text colour on hover |
 | `buttonBgColor` | `string` | `'#2f2b36'` | Button background colour |
 | `buttonBgColorHover` | `string` | `'#f7f7f7'` | Button background colour on hover |
-| `buttonWindowMinHeight` | `number` | `600` | The window has to be at least this tall to show the floating button |
-| `buttonWindowScrollDistance` | `number` | `150` | Show floating button as long as window is scrolled this far |
+| `buttonFontFamily` | `string` | `'sans-serif'` | Button font family |
+| `buttonFontWeight` | `string` | `'bold'` | Button font weight |
+| `buttonFontSize` | `string` | `'16px'` | Button font size for small/medium screens |
+| `buttonFontSizeLarge` | `string` | `'18px'` | Button font size for large screens |
+| `buttonBorderColor` | `string` | `'#2f2b36'` | Button border colour |
+| `buttonBorderColorHover` | `string` | `'#2f2b36'` | Button border colour on hover |
+| `buttonBorderRadius` | `string` | `'10px'` | Button border radius |
+| `buttonBoxShadow` | `string` | `'0 0.3rem 0.6rem rgba(2, 2, 3, 0.2)'` | Button box shadow |
+| `buttonPadding` | `string` | `'0.9em 1.3rem 0.8em'` | Button padding |
+| `buttonConditionWindowMinHeight` | `number` | `600` | The window has to be at least this tall to show the floating button |
+| `buttonConditionScrollDistance` | `number` | `150` | Show floating button after a certain scroll position |
+| `iframeBorderColor` | `string` | `'#777777'` | iFrame border colour |
+| `iframeBorderRadius` | `string` | `'20px'` | iFrame border radius |
+| `iframeBoxShadow` | `string` | `'0 0.625rem 1.875rem rgba(2, 2, 3, 0.28)'` | iFrame box shadow |
 | `closeAriaLabel` | `string` | `'Close Knowbot'` | Close button screenreader friendly text |
