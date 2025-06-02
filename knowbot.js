@@ -31,7 +31,10 @@ class Knowbot {
     // Timer.
     this.timer = undefined;
 
-    // Initialise the Knowbot instance.
+    // Track open state.
+    this.isOpen = false;
+
+    // Initialise Knowbot instance.
     this._init();
   }
 
@@ -79,25 +82,11 @@ class Knowbot {
 
     // Set up scroll position based display.
     window.addEventListener("scroll", () => {
-      if (
-        window.pageYOffset >= this.options.buttonConditionScrollDistance ||
-        window.innerHeight >= this.options.buttonConditionWindowMinHeight
-      ) {
-        document.body.classList.add("knowbot-active");
-      } else {
-        document.body.classList.remove("knowbot-active");
-      }
+      this._updateActiveClass();
     });
 
     // Initial scroll check.
-    if (
-      window.pageYOffset >= this.options.buttonConditionScrollDistance ||
-      window.innerHeight >= this.options.buttonConditionWindowMinHeight
-    ) {
-      document.body.classList.add("knowbot-active");
-    } else {
-      document.body.classList.remove("knowbot-active");
-    }
+    this._updateActiveClass();
 
     // Add user interaction listeners to reset timer when Knowbot is open.
     window.addEventListener("mousemove", this._interactionEvent.bind(this));
@@ -107,12 +96,15 @@ class Knowbot {
 
   _interactionEvent() {
     // Reset timer if Knowbot is open.
-    if (document.body.classList.contains("knowbot-active")) {
+    if (this.isOpen) {
       this._startOrResetTimer();
     }
   }
 
   _openKnowbot() {
+    // Set open state.
+    this.isOpen = true;
+
     // Create iframe if it doesn't already exist.
     if (!this.el.iframe) {
       let iframe = document.createElement("iframe");
@@ -142,9 +134,15 @@ class Knowbot {
 
     // Start timer.
     this._startOrResetTimer();
+
+    // Update active class.
+    this._updateActiveClass();
   }
 
   _closeKnowbot() {
+    // Set closed state.
+    this.isOpen = false;
+
     // Hide iframe wrapper.
     this.el.iframeWrapper.style.display = "none";
 
@@ -158,6 +156,9 @@ class Knowbot {
 
     // Enable background scrolling.
     document.body.style.overflow = "";
+
+    // Update active class.
+    this._updateActiveClass();
   }
 
   _render() {
@@ -233,6 +234,23 @@ class Knowbot {
 
     // Add HTML to the end of the document body.
     document.body.insertAdjacentHTML("beforeend", html);
+  }
+
+  _updateActiveClass() {
+    // Always show active class when Knowbot is open.
+    if (this.isOpen) {
+      document.body.classList.add("knowbot-active");
+    } else {
+      // When closed, check scroll and window conditions.
+      if (
+        window.pageYOffset >= this.options.buttonConditionScrollDistance ||
+        window.innerHeight >= this.options.buttonConditionWindowMinHeight
+      ) {
+        document.body.classList.add("knowbot-active");
+      } else {
+        document.body.classList.remove("knowbot-active");
+      }
+    }
   }
 
   _startOrResetTimer() {
