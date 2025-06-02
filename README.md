@@ -23,7 +23,7 @@ Add this code to your website HTML within `<head>`:
 
 ## Floating button
 
-By default a floating button is displayed in the bottom right.
+An 'Ask Me' button is displayed in the bottom right of the screen by default.
 
 You can customise or disable this. Please see [configuration options](#configuration-options).
 
@@ -61,3 +61,9 @@ We handle the logic but the styling of the button is up to you.
 | `iframeBorderRadius` | `string` | `'20px'` | iFrame border radius |
 | `iframeBoxShadow` | `string` | `'0 0.625rem 1.875rem rgba(2, 2, 3, 0.28)'` | iFrame box shadow |
 | `closeAriaLabel` | `string` | `'Close Knowbot'` | Close button screenreader friendly text |
+
+## FAQs
+
+**Can I use my existing CSS variables for colours?**
+
+Yes, you can pass these as a string for example `'var(--accent)'`.
