@@ -53,8 +53,8 @@ class Knowbot {
 
   _validateOptions() {
     // Validate options object.
-    if (typeof this.options !== 'object' || this.options === null) {
-      throw new Error('Knowbot: Options must be an object.');
+    if (typeof this.options !== "object" || this.options === null) {
+      throw new Error("Knowbot: Options must be an object.");
     }
 
     // Validate required URL.
@@ -66,67 +66,123 @@ class Knowbot {
     // Validate numeric options.
     this._validateNumericOptions();
 
+    // Validate excludePaths array.
+    this._validateExcludePaths();
+
     // Validate boolean/mixed options.
     this._validateMixedOptions();
   }
 
   _validateUrl() {
     // Check if URL is provided.
-    if (!this.options.url || typeof this.options.url !== 'string' || this.options.url.trim() === '') {
-      throw new Error('Knowbot: URL option is required and must be a non-empty string.');
+    if (
+      !this.options.url ||
+      typeof this.options.url !== "string" ||
+      this.options.url.trim() === ""
+    ) {
+      throw new Error(
+        "Knowbot: URL option is required and must be a non-empty string.",
+      );
     }
 
     // Validate URL format.
     try {
       new URL(this.options.url);
     } catch (error) {
-      throw new Error(`Knowbot: Invalid URL format provided: "${this.options.url}". Please provide a valid URL.`);
+      throw new Error(
+        `Knowbot: Invalid URL format provided: "${this.options.url}". Please provide a valid URL.`,
+      );
     }
   }
 
   _validateStringOptions() {
     const stringOptions = [
-      'buttonAriaLabel', 'buttonTextColor', 'buttonTextColorHover', 
-      'buttonBgColor', 'buttonBgColorHover', 'buttonFontFamily', 
-      'buttonFontWeight', 'buttonFontSize', 'buttonFontSizeLarge',
-      'buttonBorderColor', 'buttonBorderColorHover', 'buttonBorderRadius',
-      'buttonBoxShadow', 'buttonPadding', 'iframeBorderColor',
-      'iframeBorderRadius', 'iframeBoxShadow', 'closeAriaLabel'
+      "buttonAriaLabel",
+      "buttonTextColor",
+      "buttonTextColorHover",
+      "buttonBgColor",
+      "buttonBgColorHover",
+      "buttonFontFamily",
+      "buttonFontWeight",
+      "buttonFontSize",
+      "buttonFontSizeLarge",
+      "buttonBorderColor",
+      "buttonBorderColorHover",
+      "buttonBorderRadius",
+      "buttonBoxShadow",
+      "buttonPadding",
+      "iframeBorderColor",
+      "iframeBorderRadius",
+      "iframeBoxShadow",
+      "closeAriaLabel",
     ];
 
-    stringOptions.forEach(option => {
-      if (this.options[option] !== undefined && typeof this.options[option] !== 'string') {
-        throw new Error(`Knowbot: Option "${option}" must be a string, received ${typeof this.options[option]}.`);
+    stringOptions.forEach((option) => {
+      if (
+        this.options[option] !== undefined &&
+        typeof this.options[option] !== "string"
+      ) {
+        throw new Error(
+          `Knowbot: Option "${option}" must be a string, received ${typeof this.options[option]}.`,
+        );
       }
     });
   }
 
   _validateNumericOptions() {
     const numericOptions = [
-      'buttonConditionWindowMinHeight', 
-      'buttonConditionScrollDistance'
+      "buttonConditionWindowMinHeight",
+      "buttonConditionScrollDistance",
     ];
 
-    numericOptions.forEach(option => {
+    numericOptions.forEach((option) => {
       if (this.options[option] !== undefined) {
-        if (typeof this.options[option] !== 'number' || isNaN(this.options[option]) || this.options[option] < 0) {
-          throw new Error(`Knowbot: Option "${option}" must be a non-negative number, received ${this.options[option]}.`);
+        if (
+          typeof this.options[option] !== "number" ||
+          isNaN(this.options[option]) ||
+          this.options[option] < 0
+        ) {
+          throw new Error(
+            `Knowbot: Option "${option}" must be a non-negative number, received ${this.options[option]}.`,
+          );
         }
       }
     });
   }
 
+  _validateExcludePaths() {
+    // Validate excludePaths array.
+    if (this.options.excludePaths !== undefined) {
+      if (!Array.isArray(this.options.excludePaths)) {
+        throw new Error(
+          `Knowbot: Option "excludePaths" must be an array, received ${typeof this.options.excludePaths}.`,
+        );
+      }
+      this.options.excludePaths.forEach((path, index) => {
+        if (typeof path !== "string") {
+          throw new Error(
+            `Knowbot: All items in "excludePaths" must be strings, item at index ${index} is ${typeof path}.`,
+          );
+        }
+      });
+    }
+  }
+
   _validateMixedOptions() {
     // Validate button option (string or false).
-    if (this.options.button !== undefined && 
-        this.options.button !== false && 
-        typeof this.options.button !== 'string') {
-      throw new Error(`Knowbot: Option "button" must be a string or false, received ${typeof this.options.button}.`);
+    if (
+      this.options.button !== undefined &&
+      this.options.button !== false &&
+      typeof this.options.button !== "string"
+    ) {
+      throw new Error(
+        `Knowbot: Option "button" must be a string or false, received ${typeof this.options.button}.`,
+      );
     }
 
     // Check for unknown options.
     const validOptions = Object.keys(Knowbot.defaults);
-    Object.keys(this.options).forEach(option => {
+    Object.keys(this.options).forEach((option) => {
       if (!validOptions.includes(option)) {
         console.warn(`Knowbot: Unknown option "${option}" will be ignored.`);
       }
@@ -362,7 +418,9 @@ class Knowbot {
   }
 
   _updateActiveClass() {
-    const shouldBeActive = this.isOpen || this._checkScrollConditions();
+    const shouldBeActive =
+      this.isOpen ||
+      (this._checkScrollConditions() && !this._isCurrentPathExcluded());
 
     // Only modify DOM if state actually changed.
     if (shouldBeActive && !this._bodyClassList.contains("knowbot-active")) {
@@ -384,6 +442,25 @@ class Knowbot {
       currentScroll >= this.options.buttonConditionScrollDistance ||
       currentHeight >= this.options.buttonConditionWindowMinHeight
     );
+  }
+
+  _isCurrentPathExcluded() {
+    // Check if current URL path is in excludePaths array.
+    if (
+      !this.options.excludePaths ||
+      !Array.isArray(this.options.excludePaths)
+    ) {
+      return false;
+    }
+
+    const currentPath = window.location.pathname;
+    return this.options.excludePaths.some((excludePath) => {
+      // Support both exact matches and wildcard patterns.
+      if (excludePath.endsWith("*")) {
+        return currentPath.startsWith(excludePath.slice(0, -1));
+      }
+      return currentPath === excludePath;
+    });
   }
 
   _startOrResetTimer() {
@@ -422,6 +499,7 @@ Knowbot.defaults = {
   iframeBorderRadius: "20px",
   iframeBoxShadow: "0 0.625rem 1.875rem rgba(2, 2, 3, 0.28)",
   closeAriaLabel: "Close Knowbot",
+  excludePaths: [], // Array of URL paths where Knowbot should not be active
 };
 
 // Support module-based instances.

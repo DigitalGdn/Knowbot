@@ -61,9 +61,14 @@ We handle the logic but the styling of the button is up to you.
 | `iframeBorderRadius` | `string` | `'20px'` | iFrame border radius |
 | `iframeBoxShadow` | `string` | `'0 0.625rem 1.875rem rgba(2, 2, 3, 0.28)'` | iFrame box shadow |
 | `closeAriaLabel` | `string` | `'Close Knowbot'` | Close button screenreader friendly text |
+| `excludePaths` | `string[]` | `[]` | Disable Knowbot on certain pages. |
 
 ## FAQs
 
 **Can I use my existing CSS variables for colours?**
 
 Yes, you can pass these as a string for example `'var(--accent)'`.
+
+**Can I disable Knowbot on certain pages?**
+
+Yes, pass an array of paths to `excludePaths` to disable Knowbot on certain pages. You can use `*` for wildcard matching at the end of the path. For example `['/example/*']` to disable Knowbot on a parent page and its sub-pages. To add an additional exclusion, an example would be `['/example/*', '/another-example/*']`.
