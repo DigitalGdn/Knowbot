@@ -16,6 +16,9 @@ class Knowbot {
     // Merge user-provided options over the default options.
     this.options = { ...Knowbot.defaults, ...options };
 
+    // Validate required URL option.
+    this._validateUrl();
+
     // DOM element IDs and selectors.
     this.id = {
       button: "knowbot-button",
@@ -46,6 +49,20 @@ class Knowbot {
 
     // Initialize the Knowbot instance.
     this._init();
+  }
+
+  _validateUrl() {
+    // Check if URL is provided.
+    if (!this.options.url || typeof this.options.url !== 'string' || this.options.url.trim() === '') {
+      throw new Error('Knowbot: URL option is required and must be a non-empty string.');
+    }
+
+    // Validate URL format.
+    try {
+      new URL(this.options.url);
+    } catch (error) {
+      throw new Error(`Knowbot: Invalid URL format provided: "${this.options.url}". Please provide a valid URL.`);
+    }
   }
 
   _init() {
