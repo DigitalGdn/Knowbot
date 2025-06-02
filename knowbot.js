@@ -31,6 +31,12 @@ class Knowbot {
     // Cache DOM element references.
     this.el = {};
 
+    // Mobile breakpoint.
+    this._mobileBreakpoint = 590; // Device pixel width. Needs to match CSS media query.
+
+    // Scrolling enabled.
+    this._scrollingEnabled = true; // Store the scrolling status.
+
     // Timeout duration.
     this.timeoutDuration = 3600000; // 60 minutes.
 
@@ -46,6 +52,10 @@ class Knowbot {
     // Throttle/debounce timers.
     this._scrollThrottleTimer = null;
     this._interactionDebounceTimer = null;
+
+    // Scroll prevention storage.
+    this._originalScrollY = 0;
+    this._originalBodyStyle = {};
 
     // Initialize the Knowbot instance.
     this._init();
@@ -307,8 +317,10 @@ class Knowbot {
       this.el.button.style.display = "none";
     }
 
-    // Disable background scrolling.
-    document.body.style.overflow = "hidden";
+    // Disable background scrolling (Safari-compatible) on mobile viewports.
+    if (window.innerWidth <= this._mobileBreakpoint) {
+      this._disableBackgroundScroll();
+    }
 
     // Start timer.
     this._startOrResetTimer();
@@ -335,8 +347,8 @@ class Knowbot {
       this.el.button.style.display = "block";
     }
 
-    // Enable background scrolling.
-    document.body.style.overflow = "";
+    // Enable background scrolling if it was disabled.
+    this._enableBackgroundScroll();
 
     // Update active class.
     this._updateActiveClass();
@@ -472,6 +484,42 @@ class Knowbot {
         this._closeKnowbot();
       }
     }, this.timeoutDuration);
+  }
+
+  _disableBackgroundScroll() {
+    // Update the current scrolling status.
+    this._scrollingEnabled = false;
+
+    // Store current scroll position and body styles.
+    this._originalScrollY = window.pageYOffset;
+    this._originalBodyStyle.position = document.body.style.position;
+    this._originalBodyStyle.top = document.body.style.top;
+    this._originalBodyStyle.width = document.body.style.width;
+    this._originalBodyStyle.overflow = document.body.style.overflow;
+
+    // Apply styles to prevent scrolling (Safari-compatible).
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${this._originalScrollY}px`;
+    document.body.style.width = "100%";
+    document.body.style.overflow = "hidden";
+  }
+
+  _enableBackgroundScroll() {
+    if (!this._scrollingEnabled) {
+      // Update the current scrolling status.
+      this._scrollingEnabled = true;
+
+      // Restore original body styles.
+      document.body.style.position = this._originalBodyStyle.position || "";
+      document.body.style.top = this._originalBodyStyle.top || "";
+      document.body.style.width = this._originalBodyStyle.width || "";
+      document.body.style.overflow = this._originalBodyStyle.overflow || "";
+
+      // Restore scroll position.
+      if (this._originalScrollY > 0) {
+        window.scrollTo(0, this._originalScrollY);
+      }
+    }
   }
 }
 

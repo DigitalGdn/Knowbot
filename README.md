@@ -61,7 +61,7 @@ We handle the logic but the styling of the button is up to you.
 | `iframeBorderRadius` | `string` | `'20px'` | iFrame border radius |
 | `iframeBoxShadow` | `string` | `'0 0.625rem 1.875rem rgba(2, 2, 3, 0.28)'` | iFrame box shadow |
 | `closeAriaLabel` | `string` | `'Close Knowbot'` | Close button screenreader friendly text |
-| `excludePaths` | `string[]` | `[]` | Disable Knowbot on certain pages. |
+| `excludePaths` | `string[]` | `[]` | Disable Knowbot on certain pages |
 
 ## FAQs
 
