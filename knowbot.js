@@ -28,13 +28,16 @@ class Knowbot {
     // Cache DOM element references.
     this.el = {};
 
+    // Timeout duration.
+    this.timeoutDuration = 3600000; // 60 minutes.
+
     // Timer.
     this.timer = undefined;
 
     // Track open state.
     this.isOpen = false;
 
-    // Initialise Knowbot instance.
+    // Initialise the Knowbot instance.
     this._init();
   }
 
@@ -267,7 +270,7 @@ class Knowbot {
         this.el.iframe.src = "about:blank";
         this._closeKnowbot();
       }
-    }, 3600000); // 60 minutes.
+    }, this.timeoutDuration);
   }
 }
 
