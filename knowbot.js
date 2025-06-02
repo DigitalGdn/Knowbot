@@ -224,6 +224,9 @@ class Knowbot {
     // Set open state.
     this.isOpen = true;
 
+    // Add knowbot-open class to body.
+    this._bodyClassList.add("knowbot-open");
+
     // Create iframe if it doesn't already exist.
     if (!this.el.iframe) {
       const iframe = document.createElement("iframe");
@@ -261,6 +264,9 @@ class Knowbot {
   _closeKnowbot() {
     // Set closed state.
     this.isOpen = false;
+
+    // Remove knowbot-open class from body.
+    this._bodyClassList.remove("knowbot-open");
 
     // Hide iframe wrapper.
     this.el.iframeWrapper.style.display = "none";
