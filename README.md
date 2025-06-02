@@ -40,7 +40,7 @@ We handle the logic but the styling of the button is up to you.
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |
 | `url` | `url` | `''` | Server URL (provided by MHF) - **Required** |
-| `button` | `text` \| `boolean` | `'Ask Me !'` | Text to show in the floating button or false to disable |
+| `button` | `string` \| `boolean` | `'Ask Me !'` | Text to show in the floating button or false to disable |
 | `buttonAriaLabel` | `string` | `'Ask Knowbot a question'` | Floating button screenreader friendly text |
 | `buttonTextColor` | `string` | `'#ffffff'` | Button text colour |
 | `buttonTextColorHover` | `string` | `'#2f2b36'` | Button text colour on hover |
