@@ -98,6 +98,18 @@ class Knowbot {
     } else {
       document.body.classList.remove("knowbot-active");
     }
+
+    // Add user interaction listeners to reset timer when Knowbot is open.
+    window.addEventListener("mousemove", this._interactionEvent.bind(this));
+    window.addEventListener("touchstart", this._interactionEvent.bind(this));
+    window.addEventListener("keydown", this._interactionEvent.bind(this));
+  }
+
+  _interactionEvent() {
+    // Reset timer if Knowbot is open.
+    if (document.body.classList.contains("knowbot-active")) {
+      this._startOrResetTimer();
+    }
   }
 
   _openKnowbot() {
