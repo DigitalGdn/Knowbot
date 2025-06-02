@@ -325,7 +325,7 @@ Knowbot.defaults = {
   buttonBorderRadius: "10px",
   buttonBoxShadow: "0 0.3rem 0.6rem rgba(2, 2, 3, 0.2)",
   buttonPadding: "0.9em 1.3rem 0.8em",
-  buttonConditionWindowMinHeight: 11110,
+  buttonConditionWindowMinHeight: 400,
   buttonConditionScrollDistance: 150,
   iframeBorderColor: "#777777",
   iframeBorderRadius: "20px",
