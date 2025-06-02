@@ -16,8 +16,8 @@ class Knowbot {
     // Merge user-provided options over the default options.
     this.options = { ...Knowbot.defaults, ...options };
 
-    // Validate required URL option.
-    this._validateUrl();
+    // Validate options.
+    this._validateOptions();
 
     // DOM element IDs and selectors.
     this.id = {
@@ -51,6 +51,25 @@ class Knowbot {
     this._init();
   }
 
+  _validateOptions() {
+    // Validate options object.
+    if (typeof this.options !== 'object' || this.options === null) {
+      throw new Error('Knowbot: Options must be an object.');
+    }
+
+    // Validate required URL.
+    this._validateUrl();
+
+    // Validate string options.
+    this._validateStringOptions();
+
+    // Validate numeric options.
+    this._validateNumericOptions();
+
+    // Validate boolean/mixed options.
+    this._validateMixedOptions();
+  }
+
   _validateUrl() {
     // Check if URL is provided.
     if (!this.options.url || typeof this.options.url !== 'string' || this.options.url.trim() === '') {
@@ -63,6 +82,55 @@ class Knowbot {
     } catch (error) {
       throw new Error(`Knowbot: Invalid URL format provided: "${this.options.url}". Please provide a valid URL.`);
     }
+  }
+
+  _validateStringOptions() {
+    const stringOptions = [
+      'buttonAriaLabel', 'buttonTextColor', 'buttonTextColorHover', 
+      'buttonBgColor', 'buttonBgColorHover', 'buttonFontFamily', 
+      'buttonFontWeight', 'buttonFontSize', 'buttonFontSizeLarge',
+      'buttonBorderColor', 'buttonBorderColorHover', 'buttonBorderRadius',
+      'buttonBoxShadow', 'buttonPadding', 'iframeBorderColor',
+      'iframeBorderRadius', 'iframeBoxShadow', 'closeAriaLabel'
+    ];
+
+    stringOptions.forEach(option => {
+      if (this.options[option] !== undefined && typeof this.options[option] !== 'string') {
+        throw new Error(`Knowbot: Option "${option}" must be a string, received ${typeof this.options[option]}.`);
+      }
+    });
+  }
+
+  _validateNumericOptions() {
+    const numericOptions = [
+      'buttonConditionWindowMinHeight', 
+      'buttonConditionScrollDistance'
+    ];
+
+    numericOptions.forEach(option => {
+      if (this.options[option] !== undefined) {
+        if (typeof this.options[option] !== 'number' || isNaN(this.options[option]) || this.options[option] < 0) {
+          throw new Error(`Knowbot: Option "${option}" must be a non-negative number, received ${this.options[option]}.`);
+        }
+      }
+    });
+  }
+
+  _validateMixedOptions() {
+    // Validate button option (string or false).
+    if (this.options.button !== undefined && 
+        this.options.button !== false && 
+        typeof this.options.button !== 'string') {
+      throw new Error(`Knowbot: Option "button" must be a string or false, received ${typeof this.options.button}.`);
+    }
+
+    // Check for unknown options.
+    const validOptions = Object.keys(Knowbot.defaults);
+    Object.keys(this.options).forEach(option => {
+      if (!validOptions.includes(option)) {
+        console.warn(`Knowbot: Unknown option "${option}" will be ignored.`);
+      }
+    });
   }
 
   _init() {
