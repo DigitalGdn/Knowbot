@@ -37,7 +37,14 @@ class Knowbot {
     // Track open state.
     this.isOpen = false;
 
-    // Initialise the Knowbot instance.
+    // Cache body classList.
+    this._bodyClassList = document.body.classList;
+
+    // Throttle/debounce timers.
+    this._scrollThrottleTimer = null;
+    this._interactionDebounceTimer = null;
+
+    // Initialize the Knowbot instance.
     this._init();
   }
 
@@ -86,21 +93,39 @@ class Knowbot {
       });
     }
 
-    // Scroll position conditional display.
+    // Set up scroll position based display with throttling.
     window.addEventListener("scroll", () => {
-      this._updateActiveClass();
+      this._throttledScrollHandler();
     });
 
-    // User interaction listeners to reset timer when Knowbot is open.
+    // Add user interaction listeners to reset timer when Knowbot is open with debouncing.
     window.addEventListener("mousemove", () => {
-      this._interactionEvent();
+      this._debouncedInteractionEvent();
     });
     window.addEventListener("touchstart", () => {
-      this._interactionEvent();
+      this._debouncedInteractionEvent();
     });
     window.addEventListener("keydown", () => {
-      this._interactionEvent();
+      this._debouncedInteractionEvent();
     });
+  }
+
+  _throttledScrollHandler() {
+    // Throttle scroll events to improve performance.
+    if (this._scrollThrottleTimer) return;
+
+    this._scrollThrottleTimer = setTimeout(() => {
+      this._updateActiveClass();
+      this._scrollThrottleTimer = null;
+    }, 16); // ~60fps
+  }
+
+  _debouncedInteractionEvent() {
+    // Debounce user interactions to prevent excessive timer resets.
+    clearTimeout(this._interactionDebounceTimer);
+    this._interactionDebounceTimer = setTimeout(() => {
+      this._interactionEvent();
+    }, 100); // 100ms debounce
   }
 
   _interactionEvent() {
@@ -246,20 +271,28 @@ class Knowbot {
   }
 
   _updateActiveClass() {
-    // Always show active class when Knowbot is open.
-    if (this.isOpen) {
-      document.body.classList.add("knowbot-active");
-    } else {
-      // When closed, check scroll and window conditions.
-      if (
-        window.pageYOffset >= this.options.buttonConditionScrollDistance ||
-        window.innerHeight >= this.options.buttonConditionWindowMinHeight
-      ) {
-        document.body.classList.add("knowbot-active");
-      } else {
-        document.body.classList.remove("knowbot-active");
-      }
+    const shouldBeActive = this.isOpen || this._checkScrollConditions();
+
+    // Only modify DOM if state actually changed.
+    if (shouldBeActive && !this._bodyClassList.contains("knowbot-active")) {
+      this._bodyClassList.add("knowbot-active");
+    } else if (
+      !shouldBeActive &&
+      this._bodyClassList.contains("knowbot-active")
+    ) {
+      this._bodyClassList.remove("knowbot-active");
     }
+  }
+
+  _checkScrollConditions() {
+    // Cache scroll condition results to avoid repeated calculations.
+    const currentScroll = window.pageYOffset;
+    const currentHeight = window.innerHeight;
+
+    return (
+      currentScroll >= this.options.buttonConditionScrollDistance ||
+      currentHeight >= this.options.buttonConditionWindowMinHeight
+    );
   }
 
   _startOrResetTimer() {
@@ -292,7 +325,7 @@ Knowbot.defaults = {
   buttonBorderRadius: "10px",
   buttonBoxShadow: "0 0.3rem 0.6rem rgba(2, 2, 3, 0.2)",
   buttonPadding: "0.9em 1.3rem 0.8em",
-  buttonConditionWindowMinHeight: 400,
+  buttonConditionWindowMinHeight: 11110,
   buttonConditionScrollDistance: 150,
   iframeBorderColor: "#777777",
   iframeBorderRadius: "20px",
