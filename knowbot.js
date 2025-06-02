@@ -51,6 +51,9 @@ class Knowbot {
       '[href="#knowbot"], .knowbot',
     );
 
+    // Initial scroll check.
+    this._updateActiveClass();
+
     // Set up event listeners.
     this._eventListeners();
   }
@@ -80,18 +83,21 @@ class Knowbot {
       });
     }
 
-    // Set up scroll position based display.
+    // Scroll position conditional display.
     window.addEventListener("scroll", () => {
       this._updateActiveClass();
     });
 
-    // Initial scroll check.
-    this._updateActiveClass();
-
-    // Add user interaction listeners to reset timer when Knowbot is open.
-    window.addEventListener("mousemove", this._interactionEvent.bind(this));
-    window.addEventListener("touchstart", this._interactionEvent.bind(this));
-    window.addEventListener("keydown", this._interactionEvent.bind(this));
+    // User interaction listeners to reset timer when Knowbot is open.
+    window.addEventListener("mousemove", () => {
+      this._interactionEvent();
+    });
+    window.addEventListener("touchstart", () => {
+      this._interactionEvent();
+    });
+    window.addEventListener("keydown", () => {
+      this._interactionEvent();
+    });
   }
 
   _interactionEvent() {
