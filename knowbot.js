@@ -31,7 +31,7 @@ class Knowbot {
     // Timeout duration.
     this.timeoutDuration = 3600000; // 60 minutes.
 
-    // Timer.
+    // Timer reference.
     this.timer = undefined;
 
     // Track open state.
@@ -116,7 +116,7 @@ class Knowbot {
 
     // Create iframe if it doesn't already exist.
     if (!this.el.iframe) {
-      let iframe = document.createElement("iframe");
+      const iframe = document.createElement("iframe");
       iframe.id = this.id.iframe;
       iframe.src = this.options.url;
       iframe.setAttribute("aria-hidden", "true");
@@ -276,9 +276,9 @@ class Knowbot {
 
 // Default options.
 Knowbot.defaults = {
-  url: "", // Required server URL
-  button: "Ask Me !", // text or false to disable
-  buttonAriaLabel: "Ask Knowbot a question", // accessibile text for screen readers
+  url: "", // Required server URL.
+  button: "Ask Me !", // text or false to disable.
+  buttonAriaLabel: "Ask Knowbot a question", // accessible text for screen readers.
   buttonTextColor: "#f7f7f7",
   buttonTextColorHover: "#2f2b36",
   buttonBgColor: "#2f2b36",
@@ -300,7 +300,7 @@ Knowbot.defaults = {
   closeAriaLabel: "Close Knowbot",
 };
 
-// Support module based instances.
+// Support module-based instances.
 try {
   if (typeof module !== "undefined" && module.exports) {
     module.exports = Knowbot;
