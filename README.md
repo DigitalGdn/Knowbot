@@ -46,16 +46,16 @@ We handle the logic but the styling of the button is up to you.
 | `buttonTextColorHover` | `string` | `'#2f2b36'` | Button text colour on hover |
 | `buttonBgColor` | `string` | `'#2f2b36'` | Button background colour |
 | `buttonBgColorHover` | `string` | `'#f7f7f7'` | Button background colour on hover |
-| `buttonFontFamily` | `string` | `'inherit'` | Button font family, defaults to your page body font |
-| `buttonFontWeight` | `string` | `'bold'` | Button font weight |
-| `buttonFontSize` | `string` | `'16px'` | Button font size for small/medium screens |
-| `buttonFontSizeLarge` | `string` | `'18px'` | Button font size for large screens |
 | `buttonBorderColor` | `string` | `'#2f2b36'` | Button border colour |
 | `buttonBorderColorHover` | `string` | `'#2f2b36'` | Button border colour on hover |
 | `buttonBorderRadius` | `string` | `'10px'` | Button border radius |
 | `buttonBoxShadow` | `string` | `'0 0.3rem 0.6rem rgba(2, 2, 3, 0.2)'` | Button box shadow |
+| `buttonFontFamily` | `string` | `'inherit'` | Button font family, defaults to your page body font |
+| `buttonFontWeight` | `string` | `'bold'` | Button font weight |
+| `buttonFontSize` | `string` | `'16px'` | Button font size for small/medium screens |
+| `buttonFontSizeLarge` | `string` | `'18px'` | Button font size for large screens |
 | `buttonPadding` | `string` | `'0.9em 1.3rem 0.8em'` | Button padding |
-| `buttonConditionWindowMinHeight` | `number` | `600` | The window has to be at least this tall to show the floating button |
+| `buttonConditionWindowMinHeight` | `number` | `400` | The window has to be at least this tall to show the floating button |
 | `buttonConditionScrollDistance` | `number` | `150` | Show floating button after a certain scroll position |
 | `iframeBorderColor` | `string` | `'#777777'` | iFrame border colour |
 | `iframeBorderRadius` | `string` | `'20px'` | iFrame border radius |

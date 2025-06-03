@@ -49,7 +49,7 @@
         opacity 250ms,
         transform 250ms,
         background 250ms;
-    text-wrap: nowrap;
+    line-height: 1.2;
     display: flex;
     gap: 0.5rem;
     cursor: pointer;
