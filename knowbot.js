@@ -152,7 +152,8 @@ class Knowbot {
           typeof this.options[option] !== "number" ||
           isNaN(this.options[option]) ||
           this.options[option] < 0 ||
-          (option === "iframeOpacity" && (this.options[option] < 0.95 || this.options[option] > 1))
+          (option === "iframeOpacity" &&
+            (this.options[option] < 0.95 || this.options[option] > 1))
         ) {
           throw new Error(
             option === "iframeOpacity"
@@ -356,6 +357,11 @@ class Knowbot {
 
     // Update active class.
     this._updateActiveClass();
+
+    // Reset iframe.
+    if (this.options.iframeResetOnClose) {
+      this._resetIframe();
+    }
   }
 
   _render() {
@@ -484,11 +490,15 @@ class Knowbot {
     clearTimeout(this.timer);
     this.timer = setTimeout(() => {
       // On timeout clear iframe connection and close Knowbot.
-      if (this.el.iframe) {
-        this.el.iframe.src = "about:blank";
-        this._closeKnowbot();
-      }
+      this._resetIframe();
+      this._closeKnowbot();
     }, this.timeoutDuration);
+  }
+
+  _resetIframe() {
+    if (this.el.iframe) {
+      this.el.iframe.src = "about:blank";
+    }
   }
 
   _disableBackgroundScroll() {
@@ -553,6 +563,7 @@ Knowbot.defaults = {
   iframeBoxShadow: "0 0.625rem 1.875rem rgba(2, 2, 3, 0.28)",
   iframeOpacity: 1,
   closeAriaLabel: "Close Knowbot",
+  iframeResetOnClose: false,
   excludePaths: [], // Array of URL paths where Knowbot should not be active
 };
 

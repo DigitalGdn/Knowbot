@@ -84,7 +84,7 @@ We handle the logic but the styling of the button is up to you.
 | --- | --- | --- | --- |
 | `url` | `url` | `''` | Server URL (provided by MHF) - **Required** |
 | `button` | `string` \| `boolean` | `'Ask Me !'` | Text to show in the floating button or false to disable |
-| `buttonAriaLabel` | `string` | `'Ask Knowbot a question'` | Floating button screenreader friendly text |
+| `buttonAriaLabel` | `string` | `'Ask Knowbot a question'` | Floating button screen reader friendly text |
 | `buttonTextColor` | `string` | `'#ffffff'` | Button text colour |
 | `buttonTextColorHover` | `string` | `'#2f2b36'` | Button text colour on hover |
 | `buttonBgColor` | `string` | `'#2f2b36'` | Button background colour |
@@ -103,8 +103,9 @@ We handle the logic but the styling of the button is up to you.
 | `iframeBorderColor` | `string` | `'#777777'` | iFrame border colour |
 | `iframeBorderRadius` | `string` | `'20px'` | iFrame border radius |
 | `iframeBoxShadow` | `string` | `'0 0.625rem 1.875rem rgba(2, 2, 3, 0.28)'` | iFrame box shadow |
-| `iframeOpacity` | `number` | `1` | iFrame opacity, minimum 0.95 |
-| `closeAriaLabel` | `string` | `'Close Knowbot'` | Close button screenreader friendly text |
+| `iframeOpacity` | `number` | `1` | iFrame opacity between 0.95 and 1 |
+| `iframeResetOnClose` | `boolean` | `false` | Whether to reset the iframe on close |
+| `closeAriaLabel` | `string` | `'Close Knowbot'` | Close button screen reader friendly text |
 | `excludePaths` | `string[]` | `[]` | Disable Knowbot on certain pages |
 
 ## FAQs
