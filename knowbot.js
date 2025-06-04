@@ -151,10 +151,13 @@ class Knowbot {
         if (
           typeof this.options[option] !== "number" ||
           isNaN(this.options[option]) ||
-          this.options[option] < 0
+          this.options[option] < 0 ||
+          (option === "iframeOpacity" && (this.options[option] < 0.95 || this.options[option] > 1))
         ) {
           throw new Error(
-            `Knowbot: Option "${option}" must be a non-negative number, received ${this.options[option]}.`,
+            option === "iframeOpacity"
+              ? `Knowbot: Option "${option}" must be between 0.95 and 1, received ${this.options[option]}.`
+              : `Knowbot: Option "${option}" must be a non-negative number, received ${this.options[option]}.`,
           );
         }
       }
