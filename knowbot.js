@@ -555,7 +555,7 @@ Knowbot.defaults = {
   buttonFontWeight: "bold",
   buttonFontSize: "16px",
   buttonFontSizeLarge: "18px",
-  buttonPadding: "0.85em 1.3rem 0.8em",
+  buttonPadding: "0.875em 1.3rem 0.825em",
   buttonConditionWindowMinHeight: 400,
   buttonConditionScrollDistance: 150,
   iframeBorderColor: "#777777",
