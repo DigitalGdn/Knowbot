@@ -1,4 +1,4 @@
-# Knowbot
+# Knowbot - AI for nonprofits
 
 ## Installation
 
@@ -115,3 +115,7 @@ Yes, you can pass these as a string for example `'var(--accent)'`.
 **Can I disable Knowbot on certain pages?**
 
 Yes, pass an array of paths to `excludePaths` to disable Knowbot on certain pages. You can use `*` for wildcard matching at the end of the path. For example `['/example/*']` to disable Knowbot on a parent page and its sub-pages. To add an additional exclusion, an example would be `['/example/*', '/another-example/*']`.
+
+**I have a question, how should I contact you?**
+
+Please visit [knowbot.uk](https://www.knowbot.uk]) and use the contact form.
