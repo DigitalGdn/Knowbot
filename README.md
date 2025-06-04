@@ -44,7 +44,7 @@ Getting Knowbot onto your website is simple! You'll add a few lines of code to y
 </script>
 ```
 
-### How to Add Your Configuration Options:
+#### How to Add Your Configuration Options:
 
 - Look at the [configuration options](#configuration-options table) further down this page.
 - To use an option, add it inside the curly braces `{ ... }` after `new Knowbot(`.
@@ -55,20 +55,22 @@ Getting Knowbot onto your website is simple! You'll add a few lines of code to y
 - Numbers are written directly (e.g., `400`).
 - Arrays (lists) are in square brackets [] (e.g., `['/contact', '/about']`).
 
-### Important for Rookies:
+#### Important for Rookies:
 
 - The url option is required. You'll get this from MHF.
 - If you don't specify an optional setting, Knowbot will use its default value (see the "Default" column in the table).
 - JavaScript is case-sensitive! `buttonTextColor` (correct) is different from `buttontextcolor` (incorrect).
 - Make sure your CDN links for knowbot.css and knowbot.js are correct.
 
-## Floating button
+## Adding buttons to launch Knowbot
 
-An 'Ask Me' button is displayed in the bottom right of the screen by default.
+You can use one or both of the following methods.
 
-You can customise or disable this. Please see the [configuration options](#configuration-options).
+### 1. Floating button (automatic/default)
 
-## Custom button/link
+An 'Ask Me' floating button is displayed in the bottom right of the screen by default. [Configuration options](#configuration-options) let you easily customise or disable this.
+
+### 2. Button/link (custom)
 
 You can add your own link or button to your website header or page content.
 
