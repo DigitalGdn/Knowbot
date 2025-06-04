@@ -124,7 +124,7 @@ class Knowbot {
       "iframeBorderColor",
       "iframeBorderRadius",
       "iframeBoxShadow",
-      "closeAriaLabel",
+      "iframeCloseAriaLabel",
     ];
 
     stringOptions.forEach((option) => {
@@ -392,7 +392,7 @@ class Knowbot {
                     role="button"
                     tabindex="0"
                     style="display: none"
-                    aria-label="${this.options.closeAriaLabel}"
+                    aria-label="${this.options.iframeCloseAriaLabel}"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -561,8 +561,8 @@ Knowbot.defaults = {
   iframeBorderColor: "#777777",
   iframeBorderRadius: "20px",
   iframeBoxShadow: "0 0.625rem 1.875rem rgba(2, 2, 3, 0.28)",
+  iframeCloseAriaLabel: "Close Knowbot",
   iframeOpacity: 1,
-  closeAriaLabel: "Close Knowbot",
   iframeResetOnClose: false,
   excludePaths: [], // Array of URL paths where Knowbot should not be active
 };

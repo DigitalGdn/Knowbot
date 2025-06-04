@@ -103,9 +103,9 @@ We handle the logic but the styling of the button is up to you.
 | `iframeBorderColor` | `string` | `'#777777'` | iFrame border colour |
 | `iframeBorderRadius` | `string` | `'20px'` | iFrame border radius |
 | `iframeBoxShadow` | `string` | `'0 0.625rem 1.875rem rgba(2, 2, 3, 0.28)'` | iFrame box shadow |
+| `iframeCloseAriaLabel` | `string` | `'Close Knowbot'` | Close button screen reader friendly text |
 | `iframeOpacity` | `number` | `1` | iFrame opacity between 0.95 and 1 |
 | `iframeResetOnClose` | `boolean` | `false` | Whether to reset the iframe on close |
-| `closeAriaLabel` | `string` | `'Close Knowbot'` | Close button screen reader friendly text |
 | `excludePaths` | `string[]` | `[]` | Disable Knowbot on certain pages |
 
 ## FAQs
