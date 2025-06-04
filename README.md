@@ -62,9 +62,9 @@ Getting Knowbot onto your website is simple! You'll add a few lines of code to y
 - JavaScript is case-sensitive! `buttonTextColor` (correct) is different from `buttontextcolor` (incorrect).
 - Make sure your CDN links for knowbot.css and knowbot.js are correct.
 
-## Adding buttons to launch Knowbot
+## Ways users can launch Knowbot
 
-You can use one or both of the following methods.
+You can use one or both of the following methods:
 
 ### 1. Floating button (automatic/default)
 
