@@ -5,6 +5,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <style>
+            /* Basic example styling for the page - not needed for Knowbot */
             body {
                 font-family: sans-serif;
                 max-width: 50rem;
@@ -16,17 +17,21 @@
             }
         </style>
 
-        <!-- Knowbot CSS -->
-        <link rel="stylesheet" href="./knowbot.css" media="screen" />
+        <!-- Knowbot CSS (from CDN) -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/gh/DigitalGdn/Knowbot/knowbot.min.css"
+            media="screen"
+        />
 
-        <!-- Knowbot JavaScript -->
-        <script src="./knowbot.js"></script>
+        <!-- Knowbot JavaScript (from CDN) -->
+        <script src="https://cdn.jsdelivr.net/gh/DigitalGdn/Knowbot/knowbot.min.js"></script>
 
         <!-- Knowbot Configuration -->
         <script>
             document.addEventListener("DOMContentLoaded", () => {
                 const knowbot = new Knowbot({
-                    url: "https://knowbot.uk/ilm?embed=true&embed_options=hide_toolbar&name=legacymanagement.org.uk",
+                    url: "https://knowbot.uk/acevo?embed=true&embed_options=hide_toolbar&name=acevo.org.uk",
                     button: "Ask Me",
                 });
             });

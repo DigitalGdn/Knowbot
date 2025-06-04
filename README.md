@@ -7,13 +7,13 @@ Getting Knowbot onto your website is simple! You'll add a few lines of code to y
 **1. Link the Stylesheet**: This tells the browser how Knowbot should look. Add this line inside the `<head>` section of your HTML:
 ```
 <!-- Knowbot CSS (from CDN) -->
-<link rel="stylesheet" href="./knowbot.css" media="screen" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/DigitalGdn/Knowbot/knowbot.min.css" media="screen" />
 ```
 
 **2. Include the JavaScript**: This adds Knowbot's functionality. Add this line, also preferably within `<head>` (or before your closing `</body>` tag, but before the configuration script below):
 ```
 <!-- Knowbot JavaScript (from CDN) -->
-<script src="./knowbot.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/DigitalGdn/Knowbot/knowbot.min.js"></script>
 ```
 
 **3. Configure Knowbot**: This is where you tell Knowbot how to behave and look on your site. Add the following `<script>` block. You can place this within your `<head>` (as shown in [example.html](example.html) or just before your closing `</body>` tag, but it must come after you've included knowbot.js.
@@ -117,6 +117,10 @@ Yes, you can pass these as a string for example `'var(--accent)'`.
 **Can I disable Knowbot on certain pages?**
 
 Yes, pass an array of paths to `excludePaths` to disable Knowbot on certain pages. You can use `*` for wildcard matching at the end of the path. For example `['/example/*']` to disable Knowbot on a parent page and its sub-pages. To add an additional exclusion, an example would be `['/example/*', '/another-example/*']`.
+
+**Why should I use the CDN URL to host the CSS and javascript?**
+
+We are using a CDN (Content Delivery Network) called jsDelivr to host the CSS and javascript files. This improves performance and makes installation very simple. Please note that this is a requirement for using Knowbot and helps ensure you are using the latest version.
 
 **I have a question, how should I contact you?**
 
