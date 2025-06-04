@@ -2,30 +2,71 @@
 
 ## Installation
 
-Add this code to your website HTML within `<head>`:
+Getting Knowbot onto your website is simple! You'll add a few lines of code to your website's HTML.
 
+**1. Link the Stylesheet**: This tells the browser how Knowbot should look. Add this line inside the `<head>` section of your HTML:
 ```
-<!-- Knowbot CSS -->
+<!-- Knowbot CSS (from CDN) -->
 <link rel="stylesheet" href="./knowbot.css" media="screen" />
+```
 
-<!-- Knowbot JavaScript -->
+**2. Include the JavaScript**: This adds Knowbot's functionality. Add this line, also preferably within `<head>` (or before your closing `</body>` tag, but before the configuration script below):
+```
+<!-- Knowbot JavaScript (from CDN) -->
 <script src="./knowbot.js"></script>
+```
 
+**3. Configure Knowbot**: This is where you tell Knowbot how to behave and look on your site. Add the following `<script>` block. You can place this within your `<head>` (as shown in [example.html](example.html) or just before your closing `</body>` tag, but it must come after you've included knowbot.js.
+```
 <!-- Knowbot Configuration -->
 <script>
+    // This line makes sure your page is ready before Knowbot tries to set up.
     document.addEventListener("DOMContentLoaded", () => {
+        // This creates your Knowbot
         const knowbot = new Knowbot({
+            // === YOUR CONFIGURATION OPTIONS GO HERE ===
+            // You MUST provide the 'url'
             url: "Server URL provided by MHF",
+
+            // --- Optional settings below ---
+            // Example: Change the button text
+            // button: "Ask Us Anything!",
+
+            // Example: Change the button's background color
+            // buttonBgColor: "blue",
+
+            // Example: Disable the button on your /admin pages
+            // excludePaths: ["/admin/*"]
+
+            // Add more options from the table below, separated by commas
         });
     });
 </script>
 ```
 
+### How to Add Your Configuration Options:
+
+- Look at the [configuration options](#configuration-options table) further down this page.
+- To use an option, add it inside the curly braces `{ ... }` after `new Knowbot(`.
+- Each option is a key: value pair (e.g., `button: "Help"`).
+- Separate multiple options with a comma (`,`).
+- Strings (text) need to be in quotes (e.g., `"Ask Me !"` or `'#FF0000'`).
+- Booleans are `true` or `false` (without quotes).
+- Numbers are written directly (e.g., `400`).
+- Arrays (lists) are in square brackets [] (e.g., `['/contact', '/about']`).
+
+### Important for Rookies:
+
+- The url option is required. You'll get this from MHF.
+- If you don't specify an optional setting, Knowbot will use its default value (see the "Default" column in the table).
+- JavaScript is case-sensitive! `buttonTextColor` (correct) is different from `buttontextcolor` (incorrect).
+- Make sure your CDN links for knowbot.css and knowbot.js are correct.
+
 ## Floating button
 
 An 'Ask Me' button is displayed in the bottom right of the screen by default.
 
-You can customise or disable this. Please see [configuration options](#configuration-options).
+You can customise or disable this. Please see the [configuration options](#configuration-options).
 
 ## Custom button/link
 
