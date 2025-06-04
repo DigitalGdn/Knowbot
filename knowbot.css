@@ -1,3 +1,12 @@
+/**
+ * Knowbot CSS Stylesheet
+ * Version: 1.0.0
+ *
+ * Please include this file from the CDN.
+ * Knowbot visual customisation is done via the JS configuration options.
+ * If in rare cases you need to override a style, please do so from your own stylesheet.
+ */
+
 #knowbot-container {
     inset: 0;
     width: 100%;
