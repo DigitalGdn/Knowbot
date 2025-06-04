@@ -33,6 +33,7 @@
     box-shadow: var(--knowbot-iframe-box-shadow);
     border: 1px solid var(--knowbot-iframe-border-color);
     padding-bottom: 1%;
+    opacity: var(--knowbot-iframe-opacity);
 }
 
 #knowbot-button {

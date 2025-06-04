@@ -143,6 +143,7 @@ class Knowbot {
     const numericOptions = [
       "buttonConditionWindowMinHeight",
       "buttonConditionScrollDistance",
+      "iframeOpacity",
     ];
 
     numericOptions.forEach((option) => {
@@ -421,6 +422,7 @@ class Knowbot {
               --knowbot-iframe-border-color: ${this.options.iframeBorderColor};
               --knowbot-iframe-border-radius: ${this.options.iframeBorderRadius};
               --knowbot-iframe-box-shadow: ${this.options.iframeBoxShadow};
+              --knowbot-iframe-opacity: ${this.options.iframeOpacity};
             }
         </style>
     `;
@@ -546,6 +548,7 @@ Knowbot.defaults = {
   iframeBorderColor: "#777777",
   iframeBorderRadius: "20px",
   iframeBoxShadow: "0 0.625rem 1.875rem rgba(2, 2, 3, 0.28)",
+  iframeOpacity: 1,
   closeAriaLabel: "Close Knowbot",
   excludePaths: [], // Array of URL paths where Knowbot should not be active
 };
