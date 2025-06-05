@@ -46,7 +46,7 @@ Getting Knowbot onto your website is simple! You'll add a few lines of code to y
 
 #### How to Add Your Configuration Options:
 
-- Look at the [configuration options](#configuration-options table) further down this page.
+- Look at the [configuration options table](#configuration-options) further down this page.
 - To use an option, add it inside the curly braces `{ ... }` after `new Knowbot(`.
 - Each option is a key: value pair (e.g., `button: "Help"`).
 - Separate multiple options with a comma (`,`).
