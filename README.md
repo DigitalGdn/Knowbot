@@ -80,6 +80,8 @@ We handle the logic but the styling of the button is up to you.
 
 ## Configuration options
 
+Please note that only `url` is required. The script will 'just work', only add other options if you need to customise the default behaviour.
+
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |
 | `url` | `url` | `''` | Server URL (provided by MHF) - **Required** |
