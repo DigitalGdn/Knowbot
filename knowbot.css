@@ -36,7 +36,7 @@
 
 #knowbot-iframe {
     width: 100%;
-    height: 99%;
+    height: 100%;
     background: white;
     border-radius: var(--knowbot-iframe-border-radius);
     box-shadow: var(--knowbot-iframe-box-shadow);
