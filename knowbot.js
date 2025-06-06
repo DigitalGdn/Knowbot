@@ -32,7 +32,7 @@ class Knowbot {
     this.el = {};
 
     // Mobile breakpoint.
-    this._mobileBreakpoint = 590; // Device pixel width. Needs to match CSS media query.
+    this._mobileBreakpoint = 688; // Device pixel width. Needs to match CSS media query.
 
     // Scrolling enabled.
     this._scrollingEnabled = true; // Store the scrolling status.

@@ -1,6 +1,6 @@
 /**
  * Knowbot CSS Stylesheet
- * Version: 1.0.0
+ * Version: 1.0.2
  *
  * Please include this file from the CDN.
  * Knowbot visual customisation is done via the JS configuration options.
@@ -8,22 +8,16 @@
  */
 
 #knowbot-container {
-    inset: 0;
-    width: 100%;
-    height: 100%;
+    right: 0;
+    bottom: 0;
     position: fixed;
     display: block;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
     z-index: 2147483646;
-    pointer-events: none;
 }
 
 #knowbot-iframe-wrapper {
-    width: 100%;
-    height: 80%;
-    max-width: 570px;
+    width: 658px;
+    height: 80vh;
     margin-right: 1rem;
     margin-bottom: 1rem;
     align-self: end;
@@ -41,7 +35,6 @@
     border-radius: var(--knowbot-iframe-border-radius);
     box-shadow: var(--knowbot-iframe-box-shadow);
     border: 1px solid var(--knowbot-iframe-border-color);
-    padding-bottom: 1%;
     opacity: var(--knowbot-iframe-opacity);
 }
 
@@ -55,10 +48,7 @@
     box-shadow: var(--knowbot-button-box-shadow);
     background-color: var(--knowbot-button-bg-color);
     color: var(--knowbot-button-text-color);
-    transition:
-        opacity 250ms,
-        transform 250ms,
-        background 250ms;
+    transition: all 250ms ease;
     line-height: 1.2;
     display: flex;
     gap: 0.5rem;
@@ -102,10 +92,11 @@ body.knowbot-active #knowbot-button {
     color: black;
 }
 
-/* Mobile */
-@media (max-width: 590px) {
+/* Small screens (Mobile) */
+@media (max-width: 688px) {
     #knowbot-iframe-wrapper {
-        height: 100%;
+        width: 100vw;
+        height: 100dvh;
         margin-right: 0;
         margin-bottom: 0;
         justify-self: center;
@@ -113,7 +104,9 @@ body.knowbot-active #knowbot-button {
     }
 
     #knowbot-iframe {
+        height: 100dvh;
         border-radius: 0;
+        padding-bottom: 0;
         box-shadow: none;
         border: none;
     }
@@ -123,7 +116,7 @@ body.knowbot-active #knowbot-button {
     }
 }
 
-/* Desktop */
+/* Large screens */
 @media (min-width: 1300px) {
     #knowbot-button {
         font-size: var(--knowbot-button-font-size-large);
