@@ -81,6 +81,9 @@ body.knowbot-active #knowbot-button {
     line-height: 1;
     z-index: 2147483647;
     cursor: pointer;
+    width: 46px;
+    background-color: white;
+    text-align: right;
 }
 
 #knowbot-close svg {
