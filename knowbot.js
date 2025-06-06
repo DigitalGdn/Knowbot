@@ -314,6 +314,9 @@ class Knowbot {
     // Show iframe wrapper.
     this.el.iframeWrapper.style.display = "block";
 
+    // Accessibility.
+    this.el.iframe.setAttribute("aria-hidden", "false");
+
     // Show close button.
     this.el.closeButton.style.display = "block";
 
@@ -343,6 +346,9 @@ class Knowbot {
 
     // Hide iframe wrapper.
     this.el.iframeWrapper.style.display = "none";
+
+    // Accessibility.
+    this.el.iframe.setAttribute("aria-hidden", "true");
 
     // Hide close button.
     this.el.closeButton.style.display = "none";
