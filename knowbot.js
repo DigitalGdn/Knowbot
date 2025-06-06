@@ -1,6 +1,6 @@
 /*!
  * Knowbot JavaScript Library
- * Version: 1.0.0
+ * Version: 1.0.2
  * https://www.knowbot.uk
  * Copyright Mike Hudson Foundation
  *
@@ -73,6 +73,9 @@ class Knowbot {
     // Validate string options.
     this._validateStringOptions();
 
+    // Validate boolean options.
+    this._validateBooleanOptions();
+
     // Validate numeric options.
     this._validateNumericOptions();
 
@@ -134,6 +137,24 @@ class Knowbot {
       ) {
         throw new Error(
           `Knowbot: Option "${option}" must be a string, received ${typeof this.options[option]}.`,
+        );
+      }
+    });
+  }
+
+  _validateBooleanOptions() {
+    const booleanOptions = [
+      "iframeResetOnClose",
+      "disableBackgroundScrollOnMobile",
+    ];
+
+    booleanOptions.forEach((option) => {
+      if (
+        this.options[option] !== undefined &&
+        typeof this.options[option] !== "boolean"
+      ) {
+        throw new Error(
+          `Knowbot: Option "${option}" must be a boolean, received ${typeof this.options[option]}.`,
         );
       }
     });
@@ -326,8 +347,10 @@ class Knowbot {
     }
 
     // Disable background scrolling (Safari-compatible) on mobile viewports.
-    if (window.innerWidth <= this._mobileBreakpoint) {
-      this._disableBackgroundScroll();
+    if (this.options.disableBackgroundScrollOnMobile) {
+      if (window.innerWidth <= this._mobileBreakpoint) {
+        this._disableBackgroundScroll();
+      }
     }
 
     // Start timer.
@@ -570,6 +593,7 @@ Knowbot.defaults = {
   iframeCloseAriaLabel: "Close Knowbot",
   iframeOpacity: 1,
   iframeResetOnClose: false,
+  disableBackgroundScrollOnMobile: false,
   excludePaths: [], // Array of URL paths where Knowbot should not be active
 };
 
