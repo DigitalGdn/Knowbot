@@ -1,6 +1,6 @@
 /*!
  * Knowbot JavaScript Library
- * Version: 1.0.2
+ * Version: 1.0.3
  * https://www.knowbot.uk
  * Copyright Mike Hudson Foundation
  *
@@ -593,7 +593,7 @@ Knowbot.defaults = {
   iframeCloseAriaLabel: "Close Knowbot",
   iframeOpacity: 1,
   iframeResetOnClose: false,
-  disableBackgroundScrollOnMobile: false,
+  disableBackgroundScrollOnMobile: true,
   excludePaths: [], // Array of URL paths where Knowbot should not be active
 };
 
