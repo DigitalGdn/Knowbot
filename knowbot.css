@@ -1,6 +1,6 @@
 /**
  * Knowbot CSS Stylesheet
- * Version: 1.0.4
+ * Version: 1.0.5
  *
  * Please include this file from the CDN.
  * Knowbot visual customisation is done via the JS configuration options.
@@ -16,7 +16,7 @@
 }
 
 #knowbot-iframe-wrapper {
-    width: 658px;
+    width: 577px;
     height: 80vh;
     margin-right: 16px;
     margin-bottom: 16px;
@@ -96,7 +96,7 @@ body.knowbot-active #knowbot-button {
 }
 
 /* Small screens (Mobile) */
-@media (max-width: 688px) {
+@media (max-width: 607px) {
     #knowbot-iframe-wrapper {
         width: 100vw;
         height: 100dvh;
