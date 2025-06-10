@@ -1,6 +1,6 @@
 /**
  * Knowbot CSS Stylesheet
- * Version: 1.0.3
+ * Version: 1.0.4
  *
  * Please include this file from the CDN.
  * Knowbot visual customisation is done via the JS configuration options.
@@ -18,8 +18,8 @@
 #knowbot-iframe-wrapper {
     width: 658px;
     height: 80vh;
-    margin-right: 1rem;
-    margin-bottom: 1rem;
+    margin-right: 16px;
+    margin-bottom: 16px;
     align-self: end;
     justify-self: end;
     display: none;
@@ -51,11 +51,11 @@
     transition: all 250ms ease;
     line-height: 1.2;
     display: flex;
-    gap: 0.5rem;
+    gap: 8px;
     cursor: pointer;
     position: fixed;
-    bottom: 1rem;
-    right: 1rem;
+    bottom: 16px;
+    right: 16px;
     z-index: 100001;
     opacity: 0;
     pointer-events: none;
@@ -74,8 +74,8 @@ body.knowbot-active #knowbot-button {
 }
 
 #knowbot-close {
-    right: 1rem;
-    top: 1rem;
+    right: 16px;
+    top: 16px;
     position: absolute;
     color: #444;
     line-height: 1;
@@ -115,7 +115,7 @@ body.knowbot-active #knowbot-button {
     }
 
     #knowbot-close {
-        top: 1.5rem;
+        top: 24px;
     }
 }
 
