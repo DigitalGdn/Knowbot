@@ -1,6 +1,6 @@
 /*!
  * Knowbot JavaScript Library
- * Version: 1.0.6
+ * Version: 1.0.7
  * https://www.knowbot.uk
  * Copyright Mike Hudson Foundation
  *
@@ -32,7 +32,7 @@ class Knowbot {
     this.el = {};
 
     // Mobile breakpoint.
-    this._mobileBreakpoint = 607; // Device pixel width. Needs to match CSS media query.
+    this._mobileBreakpoint = 600; // Device pixel width. Needs to match CSS media query.
 
     // Scrolling enabled.
     this._scrollingEnabled = true; // Store the scrolling status.
