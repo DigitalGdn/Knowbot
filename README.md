@@ -96,7 +96,7 @@ Please note that only `url` is required. The script will 'just work', only add o
 | `buttonBorderRadius` | `string` | `'10px'` | Button border radius |
 | `buttonBoxShadow` | `string` | `'0 0.3rem 0.6rem rgba(2, 2, 3, 0.2)'` | Button box shadow |
 | `buttonFontFamily` | `string` | `'inherit'` | Button font family, defaults to your page body font |
-| `buttonFontWeight` | `string` | `'bold'` | Button font weight |
+| `buttonFontWeight` | `string` | `'bold'` | Button font weight, e.g. 'bold', '600' |
 | `buttonFontSize` | `string` | `'16px'` | Button font size for small/medium screens |
 | `buttonFontSizeLarge` | `string` | `'18px'` | Button font size for large screens |
 | `buttonPadding` | `string` | `'0.9em 1.3rem 0.8em'` | Button padding |
