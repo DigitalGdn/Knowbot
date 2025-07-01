@@ -16,7 +16,8 @@
 }
 
 #knowbot-iframe-wrapper {
-    width: 570px;
+    width: var(--knowbot-iframe-width);
+    max-width: calc(100vw - 32px);
     height: 80vh;
     margin-right: 16px;
     margin-bottom: 16px;
@@ -97,6 +98,7 @@ body.knowbot-active #knowbot-button {
 @media (max-width: 600px) {
     #knowbot-iframe-wrapper {
         width: 100vw;
+        max-width: 100vw;
         height: 100dvh;
         margin-right: 0;
         margin-bottom: 0;

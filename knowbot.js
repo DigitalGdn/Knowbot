@@ -1,6 +1,6 @@
 /*!
  * Knowbot JavaScript Library
- * Version: 1.0.7
+ * Version: 1.0.8
  * https://www.knowbot.uk
  * Copyright Mike Hudson Foundation
  *
@@ -128,6 +128,7 @@ class Knowbot {
       "iframeBorderRadius",
       "iframeBoxShadow",
       "iframeCloseAriaLabel",
+      "iframeWidth",
     ];
 
     stringOptions.forEach((option) => {
@@ -456,6 +457,10 @@ class Knowbot {
               --knowbot-button-padding: ${this.options.buttonPadding};
             }
 
+            #knowbot-iframe-wrapper {
+              --knowbot-iframe-width: ${this.options.iframeWidth};
+            }
+
             #knowbot-iframe {
               --knowbot-iframe-border-color: ${this.options.iframeBorderColor};
               --knowbot-iframe-border-radius: ${this.options.iframeBorderRadius};
@@ -593,6 +598,7 @@ Knowbot.defaults = {
   iframeCloseAriaLabel: "Close Knowbot",
   iframeOpacity: 1,
   iframeResetOnClose: false,
+  iframeWidth: "570px",
   disableBackgroundScrollOnMobile: true,
   excludePaths: [], // Array of URL paths where Knowbot should not be active
 };
