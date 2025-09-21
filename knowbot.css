@@ -43,7 +43,8 @@
     padding: var(--knowbot-button-padding);
     font-weight: var(--knowbot-button-font-weight);
     border-radius: var(--knowbot-button-border-radius);
-    border: 1px solid var(--knowbot-button-border-color);
+    border: var(--knowbot-button-border-width) solid
+        var(--knowbot-button-border-color);
     box-shadow: var(--knowbot-button-box-shadow);
     background-color: var(--knowbot-button-bg-color);
     color: var(--knowbot-button-text-color);
@@ -69,7 +70,8 @@ body.knowbot-active #knowbot-button {
 #knowbot-button:focus-within {
     background-color: var(--knowbot-button-bg-color-hover);
     color: var(--knowbot-button-text-color-hover);
-    border: 1px solid var(--knowbot-button-border-color-hover);
+    border: var(--knowbot-button-border-width) solid
+        var(--knowbot-button-border-color-hover);
     opacity: var(--knowbot-button-opacity-hover);
 }
 

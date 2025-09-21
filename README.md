@@ -91,6 +91,7 @@ Please note that only `url` is required. The script will 'just work', only add o
 | `buttonTextColorHover` | `string` | `'#2f2b36'` | Button text colour on hover |
 | `buttonBgColor` | `string` | `'#2f2b36'` | Button background colour |
 | `buttonBgColorHover` | `string` | `'#f7f7f7'` | Button background colour on hover |
+| `buttonBorderWidth` | `string` | `'1px'` | Button border width |
 | `buttonBorderColor` | `string` | `'#2f2b36'` | Button border colour |
 | `buttonBorderColorHover` | `string` | `'#2f2b36'` | Button border colour on hover |
 | `buttonBorderRadius` | `string` | `'10px'` | Button border radius |
