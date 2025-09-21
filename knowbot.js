@@ -165,6 +165,8 @@ class Knowbot {
     const numericOptions = [
       "buttonConditionWindowMinHeight",
       "buttonConditionScrollDistance",
+      "buttonOpacity",
+      "buttonOpacityHover",
       "iframeOpacity",
     ];
 
@@ -174,14 +176,24 @@ class Knowbot {
           typeof this.options[option] !== "number" ||
           isNaN(this.options[option]) ||
           this.options[option] < 0 ||
+          (option === "buttonOpacity" &&
+            (this.options[option] < 0.8 || this.options[option] > 1)) ||
+          (option === "buttonOpacityHover" &&
+            (this.options[option] < 0.8 || this.options[option] > 1)) ||
           (option === "iframeOpacity" &&
             (this.options[option] < 0.95 || this.options[option] > 1))
         ) {
-          throw new Error(
-            option === "iframeOpacity"
-              ? `Knowbot: Option "${option}" must be between 0.95 and 1, received ${this.options[option]}.`
-              : `Knowbot: Option "${option}" must be a non-negative number, received ${this.options[option]}.`,
-          );
+          let errorMessage;
+          if (option === "buttonOpacity") {
+            errorMessage = `Knowbot: Option "${option}" must be between 0.8 and 1, received ${this.options[option]}.`;
+          } else if (option === "buttonOpacityHover") {
+            errorMessage = `Knowbot: Option "${option}" must be between 0.8 and 1, received ${this.options[option]}.`;
+          } else if (option === "iframeOpacity") {
+            errorMessage = `Knowbot: Option "${option}" must be between 0.95 and 1, received ${this.options[option]}.`;
+          } else {
+            errorMessage = `Knowbot: Option "${option}" must be a non-negative number, received ${this.options[option]}.`;
+          }
+          throw new Error(errorMessage);
         }
       }
     });
@@ -455,6 +467,8 @@ class Knowbot {
               --knowbot-button-border-radius: ${this.options.buttonBorderRadius};
               --knowbot-button-box-shadow: ${this.options.buttonBoxShadow};
               --knowbot-button-padding: ${this.options.buttonPadding};
+              --knowbot-button-opacity: ${this.options.buttonOpacity};
+              --knowbot-button-opacity-hover: ${this.options.buttonOpacityHover};
             }
 
             #knowbot-iframe-wrapper {
@@ -590,6 +604,8 @@ Knowbot.defaults = {
   buttonFontSize: "16px",
   buttonFontSizeLarge: "18px",
   buttonPadding: "0.875em 1.3rem 0.825em",
+  buttonOpacity: 1,
+  buttonOpacityHover: 1,
   buttonConditionWindowMinHeight: 400,
   buttonConditionScrollDistance: 150,
   iframeBorderColor: "#777777",

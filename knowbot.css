@@ -61,7 +61,7 @@
 }
 
 body.knowbot-active #knowbot-button {
-    opacity: 1;
+    opacity: var(--knowbot-button-opacity);
     pointer-events: auto;
 }
 
@@ -70,6 +70,7 @@ body.knowbot-active #knowbot-button {
     background-color: var(--knowbot-button-bg-color-hover);
     color: var(--knowbot-button-text-color-hover);
     border: 1px solid var(--knowbot-button-border-color-hover);
+    opacity: var(--knowbot-button-opacity-hover);
 }
 
 #knowbot-close {
