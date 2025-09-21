@@ -101,6 +101,8 @@ Please note that only `url` is required. The script will 'just work', only add o
 | `buttonFontSizeLarge` | `string` | `'18px'` | Button font size for large screens |
 | `buttonLineHeight` | `string` | `'1.2'` | Button line height |
 | `buttonPadding` | `string` | `'0.9em 1.3rem 0.8em'` | Button padding |
+| `buttonDistanceRight` | `string` | `'16px'` | Button distance from right of screen |
+| `buttonDistanceBottom` | `string` | `'16px'` | Button distance from bottom of screen |
 | `buttonOpacity` | `number` | `1` | iFrame opacity between 0.8 and 1 |
 | `buttonOpacityHover` | `number` | `1` | iFrame opacity between 0.8 and 1 |
 | `buttonConditionWindowMinHeight` | `number` | `400` | The window has to be at least this tall to show the floating button |

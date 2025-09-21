@@ -53,8 +53,8 @@
     gap: 8px;
     cursor: pointer;
     position: fixed;
-    bottom: 16px;
-    right: 16px;
+    bottom: var(--knowbot-button-distance-bottom);
+    right: var(--knowbot-button-distance-right);
     z-index: 100001;
     opacity: 0;
     pointer-events: none;

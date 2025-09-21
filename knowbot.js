@@ -125,6 +125,8 @@ class Knowbot {
       "buttonBorderRadius",
       "buttonBoxShadow",
       "buttonPadding",
+      "buttonDistanceBottom",
+      "buttonDistanceRight",
       "iframeBorderColor",
       "iframeBorderRadius",
       "iframeBoxShadow",
@@ -469,6 +471,8 @@ class Knowbot {
               --knowbot-button-border-radius: ${this.options.buttonBorderRadius};
               --knowbot-button-box-shadow: ${this.options.buttonBoxShadow};
               --knowbot-button-padding: ${this.options.buttonPadding};
+              --knowbot-button-distance-bottom: ${this.options.buttonDistanceBottom};
+              --knowbot-button-distance-right: ${this.options.buttonDistanceRight};
               --knowbot-button-opacity: ${this.options.buttonOpacity};
               --knowbot-button-opacity-hover: ${this.options.buttonOpacityHover};
             }
@@ -607,6 +611,8 @@ Knowbot.defaults = {
   buttonFontSizeLarge: "18px",
   buttonLineHeight: "1.2",
   buttonPadding: "0.875em 1.3rem 0.825em",
+  buttonDistanceBottom: "16px",
+  buttonDistanceRight: "16px",
   buttonOpacity: 1,
   buttonOpacityHover: 1,
   buttonConditionWindowMinHeight: 400,
