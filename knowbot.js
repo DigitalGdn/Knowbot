@@ -1,6 +1,6 @@
 /*!
  * Knowbot JavaScript Library
- * Version: 1.0.8
+ * Version: 1.0.9
  * https://www.knowbot.uk
  * Copyright Mike Hudson Foundation
  *
