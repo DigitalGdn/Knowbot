@@ -48,7 +48,7 @@
     background-color: var(--knowbot-button-bg-color);
     color: var(--knowbot-button-text-color);
     transition: all 250ms ease;
-    line-height: 1.2;
+    line-height: var(--knowbot-button-line-height);
     display: flex;
     gap: 8px;
     cursor: pointer;

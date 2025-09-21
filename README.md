@@ -99,6 +99,7 @@ Please note that only `url` is required. The script will 'just work', only add o
 | `buttonFontWeight` | `string` | `'bold'` | Button font weight, e.g. 'bold', '600' |
 | `buttonFontSize` | `string` | `'16px'` | Button font size for small/medium screens |
 | `buttonFontSizeLarge` | `string` | `'18px'` | Button font size for large screens |
+| `buttonLineHeight` | `string` | `'1.2'` | Button line height |
 | `buttonPadding` | `string` | `'0.9em 1.3rem 0.8em'` | Button padding |
 | `buttonOpacity` | `number` | `1` | iFrame opacity between 0.8 and 1 |
 | `buttonOpacityHover` | `number` | `1` | iFrame opacity between 0.8 and 1 |

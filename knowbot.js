@@ -119,6 +119,7 @@ class Knowbot {
       "buttonFontWeight",
       "buttonFontSize",
       "buttonFontSizeLarge",
+      "buttonLineHeight",
       "buttonBorderColor",
       "buttonBorderColorHover",
       "buttonBorderRadius",
@@ -462,6 +463,7 @@ class Knowbot {
               --knowbot-button-font-weight: ${this.options.buttonFontWeight};
               --knowbot-button-font-size: ${this.options.buttonFontSize};
               --knowbot-button-font-size-large: ${this.options.buttonFontSizeLarge};
+              --knowbot-button-line-height: ${this.options.buttonLineHeight};
               --knowbot-button-border-color: ${this.options.buttonBorderColor};
               --knowbot-button-border-color-hover: ${this.options.buttonBorderColorHover};
               --knowbot-button-border-radius: ${this.options.buttonBorderRadius};
@@ -603,6 +605,7 @@ Knowbot.defaults = {
   buttonFontWeight: "bold",
   buttonFontSize: "16px",
   buttonFontSizeLarge: "18px",
+  buttonLineHeight: "1.2",
   buttonPadding: "0.875em 1.3rem 0.825em",
   buttonOpacity: 1,
   buttonOpacityHover: 1,
