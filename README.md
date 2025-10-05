@@ -7,13 +7,13 @@ Getting Knowbot onto your website is simple! You'll add a few lines of code to y
 **1. Link the Stylesheet**: This tells the browser how Knowbot should look. Add this line inside the `<head>` section of your HTML:
 ```
 <!-- Knowbot CSS (from CDN) -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/DigitalGdn/Knowbot/knowbot.min.css" media="screen" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/DigitalGdn/Knowbot/knowbot.min.css" media="screen">
 ```
 
 **2. Include the JavaScript**: This adds Knowbot's functionality. Add this line, also preferably within `<head>` (or before your closing `</body>` tag, but before the configuration script below):
 ```
 <!-- Knowbot JavaScript (from CDN) -->
-<script src="https://cdn.jsdelivr.net/gh/DigitalGdn/Knowbot/knowbot.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/gh/DigitalGdn/Knowbot/knowbot.min.js"></script>
 ```
 
 **3. Configure Knowbot**: This is where you tell Knowbot how to behave and look on your site. Add the following `<script>` block. You can place this within your `<head>` (as shown in [example.html](example.html) or just before your closing `</body>` tag, but it must come after you've included knowbot.js.
