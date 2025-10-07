@@ -1,6 +1,6 @@
 /*!
  * Knowbot JavaScript Library
- * Version: 1.0.9
+ * Version: 1.0.10
  * https://www.knowbot.uk
  * Copyright Mike Hudson Foundation
  *
@@ -176,28 +176,45 @@ class Knowbot {
 
     numericOptions.forEach((option) => {
       if (this.options[option] !== undefined) {
+        // Check type first
         if (
           typeof this.options[option] !== "number" ||
-          isNaN(this.options[option]) ||
-          this.options[option] < 0 ||
-          (option === "buttonOpacity" &&
-            (this.options[option] < 0.8 || this.options[option] > 1)) ||
-          (option === "buttonOpacityHover" &&
-            (this.options[option] < 0.8 || this.options[option] > 1)) ||
-          (option === "iframeOpacity" &&
-            (this.options[option] < 0.95 || this.options[option] > 1))
+          isNaN(this.options[option])
         ) {
-          let errorMessage;
-          if (option === "buttonOpacity") {
-            errorMessage = `Knowbot: Option "${option}" must be between 0.8 and 1, received ${this.options[option]}.`;
-          } else if (option === "buttonOpacityHover") {
-            errorMessage = `Knowbot: Option "${option}" must be between 0.8 and 1, received ${this.options[option]}.`;
-          } else if (option === "iframeOpacity") {
-            errorMessage = `Knowbot: Option "${option}" must be between 0.95 and 1, received ${this.options[option]}.`;
-          } else {
-            errorMessage = `Knowbot: Option "${option}" must be a non-negative number, received ${this.options[option]}.`;
-          }
-          throw new Error(errorMessage);
+          throw new Error(
+            `Knowbot: Option "${option}" must be a number, received ${typeof this.options[option]} "${this.options[option]}".`,
+          );
+        }
+
+        // Check general range (non-negative)
+        if (this.options[option] < 0) {
+          throw new Error(
+            `Knowbot: Option "${option}" must be non-negative, received ${this.options[option]}.`,
+          );
+        }
+
+        // Check specific range constraints
+        if (
+          option === "buttonOpacity" &&
+          (this.options[option] < 0.8 || this.options[option] > 1)
+        ) {
+          throw new Error(
+            `Knowbot: Option "${option}" must be between 0.8 and 1, received ${this.options[option]}.`,
+          );
+        } else if (
+          option === "buttonOpacityHover" &&
+          (this.options[option] < 0.8 || this.options[option] > 1)
+        ) {
+          throw new Error(
+            `Knowbot: Option "${option}" must be between 0.8 and 1, received ${this.options[option]}.`,
+          );
+        } else if (
+          option === "iframeOpacity" &&
+          (this.options[option] < 0.95 || this.options[option] > 1)
+        ) {
+          throw new Error(
+            `Knowbot: Option "${option}" must be between 0.95 and 1, received ${this.options[option]}.`,
+          );
         }
       }
     });
