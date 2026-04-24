@@ -56,6 +56,7 @@ class Knowbot {
     // Scroll prevention storage.
     this._originalScrollY = 0;
     this._originalBodyStyle = {};
+    this._hiddenElements = [];
 
     // Initialize the Knowbot instance.
     this._init();
@@ -133,6 +134,8 @@ class Knowbot {
       "iframeBoxShadow",
       "iframeCloseAriaLabel",
       "iframeWidth",
+      "iframeTitle",
+      "iframeAriaLabel",
     ];
 
     stringOptions.forEach((option) => {
@@ -280,11 +283,22 @@ class Knowbot {
   }
 
   _eventListeners() {
-    // Open Knowbot when the floating button is clicked.
+    // Keyboard activation helper for custom button elements (Enter and Space).
+    const activateOnKey = (el, handler) => {
+      el.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          handler();
+        }
+      });
+    };
+
+    // Open Knowbot when the floating button is clicked or activated by keyboard.
     if (this.options.button) {
       this.el.button.addEventListener("click", () => {
         this._openKnowbot();
       });
+      activateOnKey(this.el.button, () => this._openKnowbot());
     }
 
     // Open Knowbot when a launcher button or link is clicked.
@@ -302,7 +316,13 @@ class Knowbot {
       this.el.closeButton.addEventListener("click", () => {
         this._closeKnowbot();
       });
+      activateOnKey(this.el.closeButton, () => this._closeKnowbot());
     }
+
+    // Close on Escape key.
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && this.isOpen) this._closeKnowbot();
+    });
 
     // Set up scroll position based display with throttling.
     window.addEventListener("scroll", () => {
@@ -358,6 +378,7 @@ class Knowbot {
       const iframe = document.createElement("iframe");
       iframe.id = this.id.iframe;
       iframe.src = this.options.url;
+      iframe.title = this.options.iframeTitle;
       iframe.setAttribute("aria-hidden", "true");
       this.el.iframeWrapper.appendChild(iframe);
       this.el.iframe = iframe;
@@ -369,16 +390,26 @@ class Knowbot {
     // Show iframe wrapper.
     this.el.iframeWrapper.style.display = "block";
 
-    // Accessibility.
+    // Accessibility: expose iframe and mark wrapper as a modal dialog.
     this.el.iframe.setAttribute("aria-hidden", "false");
+    this.el.iframeWrapper.setAttribute("role", "dialog");
+    this.el.iframeWrapper.setAttribute("aria-modal", "true");
+    this.el.iframeWrapper.setAttribute("aria-label", this.options.iframeAriaLabel);
 
     // Show close button.
     this.el.closeButton.style.display = "block";
 
-    // Hide floating button.
+    // Hide floating button and update its expanded state.
     if (this.options.button) {
+      this.el.button.setAttribute("aria-expanded", "true");
       this.el.button.style.display = "none";
     }
+
+    // Hide background content from screen readers.
+    this._hideBackgroundFromScreenReaders();
+
+    // Move focus to the close button.
+    this.el.closeButton.focus();
 
     // Disable background scrolling (Safari-compatible) on mobile viewports.
     if (this.options.disableBackgroundScrollOnMobile) {
@@ -404,15 +435,27 @@ class Knowbot {
     // Hide iframe wrapper.
     this.el.iframeWrapper.style.display = "none";
 
-    // Accessibility.
+    // Accessibility: hide iframe and remove dialog role from wrapper.
     this.el.iframe.setAttribute("aria-hidden", "true");
+    this.el.iframeWrapper.removeAttribute("role");
+    this.el.iframeWrapper.removeAttribute("aria-modal");
+    this.el.iframeWrapper.removeAttribute("aria-label");
 
     // Hide close button.
     this.el.closeButton.style.display = "none";
 
-    // Show floating button.
+    // Show floating button and update its expanded state.
     if (this.options.button) {
+      this.el.button.setAttribute("aria-expanded", "false");
       this.el.button.style.display = "block";
+    }
+
+    // Restore background content for screen readers.
+    this._restoreBackgroundToScreenReaders();
+
+    // Return focus to the trigger button.
+    if (this.options.button && this.el.button) {
+      this.el.button.focus();
     }
 
     // Enable background scrolling if it was disabled.
@@ -439,6 +482,8 @@ class Knowbot {
             role="button"
             tabindex="0"
             aria-label="${this.options.buttonAriaLabel}"
+            aria-expanded="false"
+            aria-controls="${this.id.iframeWrapper}"
             style=""
         >
             <span>${this.options.button}</span>
@@ -458,6 +503,8 @@ class Knowbot {
                     aria-label="${this.options.iframeCloseAriaLabel}"
                 >
                     <svg
+                        aria-hidden="true"
+                        focusable="false"
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
                         fill="currentColor"
@@ -574,6 +621,32 @@ class Knowbot {
     }
   }
 
+  _hideBackgroundFromScreenReaders() {
+    this._hiddenElements = [];
+    Array.from(document.body.children).forEach((el) => {
+      if (
+        el.id === this.id.container ||
+        el.id === this.id.button ||
+        el.tagName === "STYLE" ||
+        el.tagName === "SCRIPT"
+      ) return;
+      const original = el.getAttribute("aria-hidden");
+      this._hiddenElements.push({ el, original });
+      el.setAttribute("aria-hidden", "true");
+    });
+  }
+
+  _restoreBackgroundToScreenReaders() {
+    this._hiddenElements.forEach(({ el, original }) => {
+      if (original === null) {
+        el.removeAttribute("aria-hidden");
+      } else {
+        el.setAttribute("aria-hidden", original);
+      }
+    });
+    this._hiddenElements = [];
+  }
+
   _disableBackgroundScroll() {
     // Update the current scrolling status.
     this._scrollingEnabled = false;
@@ -641,6 +714,8 @@ Knowbot.defaults = {
   iframeBorderRadius: "20px",
   iframeBoxShadow: "0 0.625rem 1.875rem rgba(2, 2, 3, 0.28)",
   iframeCloseAriaLabel: "Close Knowbot",
+  iframeTitle: "Knowbot chat assistant",
+  iframeAriaLabel: "Knowbot chat assistant",
   iframeOpacity: 1,
   iframeResetOnClose: false,
   iframeWidth: "570px",

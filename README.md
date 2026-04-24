@@ -111,7 +111,9 @@ Please note that only `url` is required. The script will 'just work', only add o
 | `iframeBorderColor` | `string` | `'#777777'` | iFrame border colour |
 | `iframeBorderRadius` | `string` | `'20px'` | iFrame border radius |
 | `iframeBoxShadow` | `string` | `'0 0.625rem 1.875rem rgba(2, 2, 3, 0.28)'` | iFrame box shadow |
-| `iframeCloseAriaLabel` | `string` | `'Close Knowbot'` | Screen reader accessibility text (hidden) |
+| `iframeCloseAriaLabel` | `string` | `'Close Knowbot'` | Screen reader label for the close button (read by screen readers, not visible) |
+| `iframeTitle` | `string` | `'Knowbot chat assistant'` | Title attribute on the iframe (read by screen readers to identify the chat panel) |
+| `iframeAriaLabel` | `string` | `'Knowbot chat assistant'` | Screen reader label for the chat panel dialog |
 | `iframeOpacity` | `number` | `1` | iFrame opacity between 0.95 and 1 |
 | `iframeResetOnClose` | `boolean` | `false` | Whether to reset the iframe on close |
 | `excludePaths` | `string[]` | `[]` | Disable Knowbot on certain pages |

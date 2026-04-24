@@ -67,7 +67,7 @@ body.knowbot-active #knowbot-button {
 }
 
 body.knowbot-active #knowbot-button:hover,
-body.knowbot-active #knowbot-button:focus-within {
+body.knowbot-active #knowbot-button:focus-visible {
     background-color: var(--knowbot-button-bg-color-hover);
     color: var(--knowbot-button-text-color-hover);
     border: var(--knowbot-button-border-width) solid
