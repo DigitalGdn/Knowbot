@@ -104,17 +104,17 @@ Please note that only `url` is required. The script will 'just work', only add o
 | `buttonPadding` | `string` | `'0.9em 1.3rem 0.8em'` | Button padding |
 | `buttonDistanceRight` | `string` | `'16px'` | Button distance from right of screen |
 | `buttonDistanceBottom` | `string` | `'16px'` | Button distance from bottom of screen |
-| `buttonOpacity` | `number` | `1` | iFrame opacity between 0.8 and 1 |
-| `buttonOpacityHover` | `number` | `1` | iFrame opacity between 0.8 and 1 |
+| `buttonOpacity` | `number` | `1` | iframe opacity between 0.8 and 1 |
+| `buttonOpacityHover` | `number` | `1` | iframe opacity between 0.8 and 1 |
 | `buttonConditionWindowMinHeight` | `number` | `400` | The window has to be at least this tall to show the floating button |
 | `buttonConditionScrollDistance` | `number` | `150` | Show floating button after a certain scroll position |
-| `iframeBorderColor` | `string` | `'#777777'` | iFrame border colour |
-| `iframeBorderRadius` | `string` | `'20px'` | iFrame border radius |
-| `iframeBoxShadow` | `string` | `'0 0.625rem 1.875rem rgba(2, 2, 3, 0.28)'` | iFrame box shadow |
+| `iframeBorderColor` | `string` | `'#777777'` | iframe border colour |
+| `iframeBorderRadius` | `string` | `'20px'` | iframe border radius |
+| `iframeBoxShadow` | `string` | `'0 0.625rem 1.875rem rgba(2, 2, 3, 0.28)'` | iframe box shadow |
 | `iframeCloseAriaLabel` | `string` | `'Close Knowbot'` | Screen reader label for the close button (read by screen readers, not visible) |
 | `iframeTitle` | `string` | `'Knowbot chat assistant'` | Title attribute on the iframe (read by screen readers to identify the chat panel) |
 | `iframeAriaLabel` | `string` | `'Knowbot chat assistant'` | Screen reader label for the chat panel dialog |
-| `iframeOpacity` | `number` | `1` | iFrame opacity between 0.95 and 1 |
+| `iframeOpacity` | `number` | `1` | iframe opacity between 0.95 and 1 |
 | `iframeResetOnClose` | `boolean` | `false` | Whether to reset the iframe on close |
 | `excludePaths` | `string[]` | `[]` | Disable Knowbot on certain pages |
 
