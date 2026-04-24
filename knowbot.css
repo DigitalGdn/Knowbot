@@ -97,6 +97,16 @@ body.knowbot-active #knowbot-button:focus-visible {
     color: black;
 }
 
+#knowbot-close:focus-visible {
+    outline: none;
+}
+
+#knowbot-close:focus-visible svg {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+    border-radius: 50%;
+}
+
 /* Small screens (Mobile) */
 @media (max-width: 600px) {
     #knowbot-iframe-wrapper {
