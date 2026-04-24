@@ -388,7 +388,7 @@ class Knowbot {
     }
 
     // Show iframe wrapper.
-    this.el.iframeWrapper.style.display = "block";
+    this.el.iframeWrapper.classList.add("knowbot-panel-open");
 
     // Accessibility: expose iframe and mark wrapper as a modal dialog.
     this.el.iframe.setAttribute("aria-hidden", "false");
@@ -433,7 +433,7 @@ class Knowbot {
     this._bodyClassList.remove("knowbot-open");
 
     // Hide iframe wrapper.
-    this.el.iframeWrapper.style.display = "none";
+    this.el.iframeWrapper.classList.remove("knowbot-panel-open");
 
     // Accessibility: hide iframe and remove dialog role from wrapper.
     this.el.iframe.setAttribute("aria-hidden", "true");

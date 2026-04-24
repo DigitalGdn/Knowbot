@@ -13,6 +13,7 @@
     position: fixed;
     display: block;
     z-index: 2147483646;
+    pointer-events: none;
 }
 
 #knowbot-iframe-wrapper {
@@ -21,9 +22,19 @@
     height: 80vh;
     margin-right: 16px;
     margin-bottom: 16px;
-    display: none;
     position: relative;
-    transition: opacity 0.25s ease;
+    transform: translateY(100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.25s ease, opacity 0.25s ease, visibility 0s linear 0.25s;
+    pointer-events: none;
+}
+
+#knowbot-iframe-wrapper.knowbot-panel-open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+    transition: transform 0.25s ease, opacity 0.25s ease;
     pointer-events: auto;
 }
 
@@ -86,6 +97,7 @@ body.knowbot-active #knowbot-button:focus-visible {
     width: 46px;
     background-color: white;
     text-align: right;
+    pointer-events: auto;
 }
 
 #knowbot-close svg {
@@ -135,5 +147,16 @@ body.knowbot-active #knowbot-button:focus-visible {
 @media (min-width: 1300px) {
     #knowbot-button {
         font-size: var(--knowbot-button-font-size-large);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #knowbot-iframe-wrapper {
+        transform: none;
+        transition: opacity 0.25s ease, visibility 0s linear 0.25s;
+    }
+
+    #knowbot-iframe-wrapper.knowbot-panel-open {
+        transition: opacity 0.25s ease;
     }
 }
