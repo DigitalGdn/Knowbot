@@ -1,6 +1,6 @@
 /*!
  * Knowbot JavaScript Library
- * Version: 1.1.0
+ * Version: 1.1.1
  * https://www.knowbot.uk
  * Copyright Mike Hudson Foundation
  *
@@ -471,90 +471,75 @@ class Knowbot {
   }
 
   _render() {
-    // Start building the HTML.
-    let html = ``;
+    const fragment = document.createDocumentFragment();
 
-    // Add floating button if enabled.
+    // Floating button.
     if (this.options.button) {
-      html += `
-        <knowbot-button
-            id="${this.id.button}"
-            role="button"
-            tabindex="0"
-            aria-label="${this.options.buttonAriaLabel}"
-            aria-expanded="false"
-            aria-controls="${this.id.iframeWrapper}"
-            style=""
-        >
-            <span>${this.options.button}</span>
-        </knowbot-button>
-      `;
+      const btn = document.createElement("knowbot-button");
+      btn.id = this.id.button;
+      btn.setAttribute("role", "button");
+      btn.setAttribute("tabindex", "0");
+      btn.setAttribute("aria-label", this.options.buttonAriaLabel);
+      btn.setAttribute("aria-expanded", "false");
+      btn.setAttribute("aria-controls", this.id.iframeWrapper);
+      const span = document.createElement("span");
+      span.textContent = this.options.button;
+      btn.appendChild(span);
+      fragment.appendChild(btn);
     }
 
     // Iframe wrapper and close button.
-    html += `
-        <div id="${this.id.container}">
-            <div id="${this.id.iframeWrapper}">
-                <knowbot-button
-                    id="${this.id.closeButton}"
-                    role="button"
-                    tabindex="0"
-                    style="display: none"
-                    aria-label="${this.options.iframeCloseAriaLabel}"
-                >
-                    <svg
-                        aria-hidden="true"
-                        focusable="false"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                    >
-                        <path
-                            d="M10.5859 12L2.79297 4.20706L4.20718 2.79285L12.0001 10.5857L19.793 2.79285L21.2072 4.20706L13.4143 12L21.2072 19.7928L19.793 21.2071L12.0001 13.4142L4.20718 21.2071L2.79297 19.7928L10.5859 12Z"
-                        ></path>
-                    </svg>
-                </knowbot-button>
-            </div>
-        </div>
+    const container = document.createElement("div");
+    container.id = this.id.container;
+    const iframeWrapper = document.createElement("div");
+    iframeWrapper.id = this.id.iframeWrapper;
+    const closeBtn = document.createElement("knowbot-button");
+    closeBtn.id = this.id.closeButton;
+    closeBtn.setAttribute("role", "button");
+    closeBtn.setAttribute("tabindex", "0");
+    closeBtn.style.display = "none";
+    closeBtn.setAttribute("aria-label", this.options.iframeCloseAriaLabel);
+    closeBtn.innerHTML = `<svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M10.5859 12L2.79297 4.20706L4.20718 2.79285L12.0001 10.5857L19.793 2.79285L21.2072 4.20706L13.4143 12L21.2072 19.7928L19.793 21.2071L12.0001 13.4142L4.20718 21.2071L2.79297 19.7928L10.5859 12Z"></path></svg>`;
+    iframeWrapper.appendChild(closeBtn);
+    container.appendChild(iframeWrapper);
+    fragment.appendChild(container);
+
+    // CSS custom properties.
+    const style = document.createElement("style");
+    style.textContent = `
+      #knowbot-button {
+        --knowbot-button-bg-color: ${this.options.buttonBgColor};
+        --knowbot-button-bg-color-hover: ${this.options.buttonBgColorHover};
+        --knowbot-button-text-color: ${this.options.buttonTextColor};
+        --knowbot-button-text-color-hover: ${this.options.buttonTextColorHover};
+        --knowbot-button-font-family: ${this.options.buttonFontFamily};
+        --knowbot-button-font-weight: ${this.options.buttonFontWeight};
+        --knowbot-button-font-size: ${this.options.buttonFontSize};
+        --knowbot-button-font-size-large: ${this.options.buttonFontSizeLarge};
+        --knowbot-button-line-height: ${this.options.buttonLineHeight};
+        --knowbot-button-border-width: ${this.options.buttonBorderWidth};
+        --knowbot-button-border-color: ${this.options.buttonBorderColor};
+        --knowbot-button-border-color-hover: ${this.options.buttonBorderColorHover};
+        --knowbot-button-border-radius: ${this.options.buttonBorderRadius};
+        --knowbot-button-box-shadow: ${this.options.buttonBoxShadow};
+        --knowbot-button-padding: ${this.options.buttonPadding};
+        --knowbot-button-distance-bottom: ${this.options.buttonDistanceBottom};
+        --knowbot-button-distance-right: ${this.options.buttonDistanceRight};
+        --knowbot-button-opacity: ${this.options.buttonOpacity};
+        --knowbot-button-opacity-hover: ${this.options.buttonOpacityHover};
+      }
+
+      #knowbot-iframe-wrapper {
+        --knowbot-iframe-width: ${this.options.iframeWidth};
+        --knowbot-iframe-border-color: ${this.options.iframeBorderColor};
+        --knowbot-iframe-border-radius: ${this.options.iframeBorderRadius};
+        --knowbot-iframe-box-shadow: ${this.options.iframeBoxShadow};
+        --knowbot-iframe-opacity: ${this.options.iframeOpacity};
+      }
     `;
+    fragment.appendChild(style);
 
-    // CSS variables
-    html += `
-        <style type="text/css">
-            #knowbot-button {
-              --knowbot-button-bg-color: ${this.options.buttonBgColor};
-              --knowbot-button-bg-color-hover: ${this.options.buttonBgColorHover};
-              --knowbot-button-text-color: ${this.options.buttonTextColor};
-              --knowbot-button-text-color-hover: ${this.options.buttonTextColorHover};
-              --knowbot-button-font-family: ${this.options.buttonFontFamily};
-              --knowbot-button-font-weight: ${this.options.buttonFontWeight};
-              --knowbot-button-font-size: ${this.options.buttonFontSize};
-              --knowbot-button-font-size-large: ${this.options.buttonFontSizeLarge};
-              --knowbot-button-line-height: ${this.options.buttonLineHeight};
-              --knowbot-button-border-width: ${this.options.buttonBorderWidth};
-              --knowbot-button-border-color: ${this.options.buttonBorderColor};
-              --knowbot-button-border-color-hover: ${this.options.buttonBorderColorHover};
-              --knowbot-button-border-radius: ${this.options.buttonBorderRadius};
-              --knowbot-button-box-shadow: ${this.options.buttonBoxShadow};
-              --knowbot-button-padding: ${this.options.buttonPadding};
-              --knowbot-button-distance-bottom: ${this.options.buttonDistanceBottom};
-              --knowbot-button-distance-right: ${this.options.buttonDistanceRight};
-              --knowbot-button-opacity: ${this.options.buttonOpacity};
-              --knowbot-button-opacity-hover: ${this.options.buttonOpacityHover};
-            }
-
-            #knowbot-iframe-wrapper {
-              --knowbot-iframe-width: ${this.options.iframeWidth};
-              --knowbot-iframe-border-color: ${this.options.iframeBorderColor};
-              --knowbot-iframe-border-radius: ${this.options.iframeBorderRadius};
-              --knowbot-iframe-box-shadow: ${this.options.iframeBoxShadow};
-              --knowbot-iframe-opacity: ${this.options.iframeOpacity};
-            }
-        </style>
-    `;
-
-    // Add HTML to the end of the document body.
-    document.body.insertAdjacentHTML("beforeend", html);
+    document.body.appendChild(fragment);
   }
 
   _updateActiveClass() {
