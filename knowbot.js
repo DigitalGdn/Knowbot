@@ -545,9 +545,6 @@ class Knowbot {
 
             #knowbot-iframe-wrapper {
               --knowbot-iframe-width: ${this.options.iframeWidth};
-            }
-
-            #knowbot-iframe {
               --knowbot-iframe-border-color: ${this.options.iframeBorderColor};
               --knowbot-iframe-border-radius: ${this.options.iframeBorderRadius};
               --knowbot-iframe-box-shadow: ${this.options.iframeBoxShadow};

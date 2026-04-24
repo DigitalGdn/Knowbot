@@ -27,7 +27,12 @@
     opacity: 0;
     visibility: hidden;
     transition: transform 0.25s ease, opacity 0.25s ease, visibility 0s linear 0.25s;
+    overflow: hidden;
+    overscroll-behavior: contain;
     pointer-events: none;
+    border-radius: var(--knowbot-iframe-border-radius);
+    box-shadow: var(--knowbot-iframe-box-shadow);
+    border: 1px solid var(--knowbot-iframe-border-color);
 }
 
 #knowbot-iframe-wrapper.knowbot-panel-open {
@@ -42,9 +47,8 @@
     width: 100%;
     height: 100%;
     background: white;
-    border-radius: var(--knowbot-iframe-border-radius);
-    box-shadow: var(--knowbot-iframe-box-shadow);
-    border: 1px solid var(--knowbot-iframe-border-color);
+    display: block;
+    border: none;
     opacity: var(--knowbot-iframe-opacity);
 }
 
@@ -128,13 +132,14 @@ body.knowbot-active #knowbot-button:focus-visible {
         margin-right: 0;
         margin-bottom: 0;
         background: white;
+        border-radius: 0;
+        box-shadow: none;
+        border: none;
     }
 
     #knowbot-iframe {
         height: 100dvh;
-        border-radius: 0;
         padding-bottom: 0;
-        box-shadow: none;
         border: none;
     }
 
