@@ -1,6 +1,6 @@
 /*!
  * Knowbot JavaScript Library
- * Version: 1.1.1
+ * Version: 1.1.2
  * https://www.knowbot.uk
  * Copyright Mike Hudson Foundation
  *
@@ -658,10 +658,8 @@ class Knowbot {
       document.body.style.width = this._originalBodyStyle.width || "";
       document.body.style.overflow = this._originalBodyStyle.overflow || "";
 
-      // Restore scroll position.
-      if (this._originalScrollY > 0) {
-        window.scrollTo(0, this._originalScrollY);
-      }
+      // Restore scroll position instantly, bypassing any smooth-scroll CSS.
+      window.scrollTo({ top: this._originalScrollY, behavior: "instant" });
     }
   }
 }
