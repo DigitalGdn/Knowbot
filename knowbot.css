@@ -1,6 +1,6 @@
 /**
  * Knowbot CSS Stylesheet
- * Version: 1.1.1
+ * Version: 1.1.2
  *
  * Please include this file from the CDN.
  * Knowbot visual customisation is done via the JS configuration options.
@@ -33,6 +33,7 @@
     border-radius: var(--knowbot-iframe-border-radius);
     box-shadow: var(--knowbot-iframe-box-shadow);
     border: 1px solid var(--knowbot-iframe-border-color);
+    background: white;
 }
 
 #knowbot-iframe-wrapper.knowbot-panel-open {
@@ -131,7 +132,6 @@ body.knowbot-active #knowbot-button:focus-visible {
         height: 100dvh;
         margin-right: 0;
         margin-bottom: 0;
-        background: white;
         border-radius: 0;
         box-shadow: none;
         border: none;
