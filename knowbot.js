@@ -1,6 +1,6 @@
 /*!
  * Knowbot JavaScript Library
- * Version: 1.1.2
+ * Version: 1.1.3
  * https://www.knowbot.uk
  * Copyright Mike Hudson Foundation
  *
@@ -275,8 +275,8 @@ class Knowbot {
       '[href="#knowbot"], .knowbot',
     );
 
-    // Initial scroll check.
-    this._updateActiveClass();
+    // Initial scroll check. Deferred to avoid forced reflow.
+    requestAnimationFrame(() => this._updateActiveClass());
 
     // Set up event listeners.
     this._eventListeners();
