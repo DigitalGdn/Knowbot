@@ -13,33 +13,30 @@ Getting Knowbot onto your website is simple! You'll add a few lines of code to y
 **2. Include the JavaScript**: This adds Knowbot's functionality. Add this line, also preferably within `<head>` (or before your closing `</body>` tag, but before the configuration script below):
 ```
 <!-- Knowbot JavaScript (from CDN) -->
-<script defer src="https://cdn.jsdelivr.net/gh/DigitalGdn/Knowbot/knowbot.min.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/DigitalGdn/Knowbot/knowbot.min.js"></script>
 ```
 
 **3. Configure Knowbot**: This is where you tell Knowbot how to behave and look on your site. Add the following `<script>` block. You can place this within your `<head>` (as shown in [example.html](example.html) or just before your closing `</body>` tag, but it must come after you've included knowbot.js.
 ```
 <!-- Knowbot Configuration -->
-<script>
-    // This line makes sure your page is ready before Knowbot tries to set up.
-    document.addEventListener("DOMContentLoaded", () => {
-        // This creates your Knowbot
-        const knowbot = new Knowbot({
-            // === YOUR CONFIGURATION OPTIONS GO HERE ===
-            // You MUST provide the 'url'
-            url: "Server URL provided by MHF",
+<script type="module">
+    // This creates your Knowbot
+    const knowbot = new Knowbot({
+        // === YOUR CONFIGURATION OPTIONS GO HERE ===
+        // You MUST provide the 'url'
+        url: "Server URL provided by MHF",
 
-            // --- Optional settings below ---
-            // Example: Change the button text
-            // button: "Ask Us Anything!",
+        // --- Optional settings below ---
+        // Example: Change the button text
+        // button: "Ask Us Anything!",
 
-            // Example: Change the button's background color
-            // buttonBgColor: "blue",
+        // Example: Change the button's background color
+        // buttonBgColor: "blue",
 
-            // Example: Disable the button on your /admin pages
-            // excludePaths: ["/admin/*"]
+        // Example: Disable the button on your /admin pages
+        // excludePaths: ["/admin/*"]
 
-            // Add more options from the table below, separated by commas
-        });
+        // Add more options from the table below, separated by commas
     });
 </script>
 ```

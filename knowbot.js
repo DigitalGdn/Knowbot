@@ -1,6 +1,6 @@
 /*!
  * Knowbot JavaScript Library
- * Version: 1.1.3
+ * Version: 1.2.0
  * https://www.knowbot.uk
  * Copyright Mike Hudson Foundation
  *
@@ -46,9 +46,6 @@ class Knowbot {
     // Track open state.
     this.isOpen = false;
 
-    // Cache body classList.
-    this._bodyClassList = document.body.classList;
-
     // Throttle/debounce timers.
     this._scrollThrottleTimer = null;
     this._interactionDebounceTimer = null;
@@ -57,6 +54,20 @@ class Knowbot {
     this._originalScrollY = 0;
     this._originalBodyStyle = {};
     this._hiddenElements = [];
+
+    // Defer DOM-dependent setup until the document is ready. Supports
+    // consent management autoblocking, which can delay this script
+    // until after DOMContentLoaded has already fired.
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", () => this._setup());
+    } else {
+      this._setup();
+    }
+  }
+
+  _setup() {
+    // Cache body classList.
+    this._bodyClassList = document.body.classList;
 
     // Initialize the Knowbot instance.
     this._init();
