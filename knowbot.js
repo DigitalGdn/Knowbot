@@ -1,6 +1,6 @@
 /*!
  * Knowbot JavaScript Library
- * Version: 1.2.0
+ * Version: 1.2.1
  * https://www.knowbot.uk
  * Copyright Mike Hudson Foundation
  *
@@ -66,6 +66,15 @@ class Knowbot {
   }
 
   _setup() {
+    // Guard against duplicate instances (e.g. the loader script included
+    // more than once) reusing the same fixed element IDs.
+    if (document.getElementById(this.id.container)) {
+      console.warn(
+        "Knowbot: An instance is already running on this page. Skipping duplicate initialization.",
+      );
+      return;
+    }
+
     // Cache body classList.
     this._bodyClassList = document.body.classList;
 
