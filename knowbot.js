@@ -1,6 +1,6 @@
 /*!
  * Knowbot JavaScript Library
- * Version: 1.2.1
+ * Version: 1.2.2
  * https://www.knowbot.uk
  * Copyright Mike Hudson Foundation
  *
@@ -387,6 +387,9 @@ class Knowbot {
   }
 
   _openKnowbot() {
+    // Guard.
+    if (this.isOpen) return;
+
     // Set open state.
     this.isOpen = true;
 
@@ -446,6 +449,9 @@ class Knowbot {
   }
 
   _closeKnowbot() {
+    // Guard.
+    if (!this.isOpen) return;
+
     // Set closed state.
     this.isOpen = false;
 
