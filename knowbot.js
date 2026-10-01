@@ -1,6 +1,6 @@
 /*!
  * Knowbot JavaScript Library
- * Version: 1.2.2
+ * Version: 1.3.0
  * https://www.knowbot.uk
  * Copyright Mike Hudson Foundation
  *
@@ -45,6 +45,9 @@ class Knowbot {
 
     // Track open state.
     this.isOpen = false;
+
+    // Track whether we've already preconnected to the iframe origin.
+    this._preconnected = false;
 
     // Throttle/debounce timers.
     this._scrollThrottleTimer = null;
@@ -173,6 +176,7 @@ class Knowbot {
   _validateBooleanOptions() {
     const booleanOptions = [
       "iframeResetOnClose",
+      "iframePreconnect",
       "disableBackgroundScrollOnMobile",
     ];
 
@@ -331,6 +335,39 @@ class Knowbot {
       });
     }
 
+    // Preconnect to the iframe origin on early signals of intent, so the
+    // connection is warm by the time the user actually clicks, without
+    // opening it for visitors who never interact with the page at all.
+    if (this.options.iframePreconnect) {
+      const warmUp = () => this._preconnect();
+
+      // Hover/focus of the launch button or a custom launcher. Touch
+      // isn't bound here: it bubbles to window, so the page-wide
+      // touchstart listener below already covers a touch on the button.
+      const triggers = this.options.button
+        ? [this.el.button, ...this.el.launchers]
+        : this.el.launchers;
+      triggers.forEach((trigger) => {
+        trigger.addEventListener("mouseenter", warmUp);
+        trigger.addEventListener("focus", warmUp);
+      });
+
+      // The page's first scroll or touch. On mobile in particular, a
+      // visitor usually interacts with the page before they reach the
+      // launch button, giving more lead time than waiting for a touch
+      // on the button itself. mousemove is deliberately excluded here:
+      // on desktop it fires on the slightest cursor twitch, so it
+      // triggers for almost every visitor almost immediately - in
+      // effect the same as firing on load, for everyone, which is what
+      // this is meant to avoid.
+      ["scroll", "touchstart"].forEach((eventName) => {
+        window.addEventListener(eventName, warmUp, {
+          once: true,
+          passive: true,
+        });
+      });
+    }
+
     // Close the iframe and restore floating button.
     if (this.el.closeButton) {
       this.el.closeButton.addEventListener("click", () => {
@@ -384,6 +421,24 @@ class Knowbot {
     if (this.isOpen) {
       this._startOrResetTimer();
     }
+  }
+
+  _preconnect() {
+    // Only need to do this once per page load.
+    if (this._preconnected) return;
+    this._preconnected = true;
+
+    // knowbot.uk redirects to the Render host that actually serves the
+    // iframe, so both need preconnecting.
+    const hosts = ["knowbot.uk", "mhfprod.onrender.com"];
+
+    hosts.forEach((host) => {
+      const link = document.createElement("link");
+      link.rel = "preconnect";
+      link.href = `https://${host}`;
+      link.crossOrigin = "anonymous";
+      document.head.appendChild(link);
+    });
   }
 
   _openKnowbot() {
@@ -724,6 +779,7 @@ Knowbot.defaults = {
   iframeAriaLabel: "Knowbot chat assistant",
   iframeOpacity: 1,
   iframeResetOnClose: false,
+  iframePreconnect: true,
   iframeWidth: "570px",
   disableBackgroundScrollOnMobile: true,
   excludePaths: [], // Array of URL paths where Knowbot should not be active

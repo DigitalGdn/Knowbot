@@ -113,6 +113,7 @@ Please note that only `url` is required. The script will 'just work', only add o
 | `iframeAriaLabel` | `string` | `'Knowbot chat assistant'` | Screen reader label for the chat panel dialog |
 | `iframeOpacity` | `number` | `1` | iframe opacity between 0.95 and 1 |
 | `iframeResetOnClose` | `boolean` | `false` | Whether to reset the iframe on close |
+| `iframePreconnect` | `boolean` | `true` | Preconnect to the iframe's server on hover/focus/touch of the launch button, or on the page's first scroll/touch, to warm the connection ahead of time. |
 | `excludePaths` | `string[]` | `[]` | Disable Knowbot on certain pages |
 
 ## FAQs
