@@ -1,6 +1,6 @@
 /*!
  * Knowbot JavaScript Library
- * Version: 1.3.2
+ * Version: 1.3.3
  * https://www.knowbot.uk
  * Copyright Mike Hudson Foundation
  *
@@ -302,6 +302,7 @@ class Knowbot {
     this.el.closeButton = document.getElementById(this.id.closeButton);
     this.el.iframe = undefined; // Dynamically set later.
     this.el.iframeWrapper = document.getElementById(this.id.iframeWrapper);
+    this.el.container = document.getElementById(this.id.container);
     this.el.launchers = document.querySelectorAll(
       '[href="#knowbot"], .knowbot',
     );
@@ -472,7 +473,13 @@ class Knowbot {
       this.el.iframe.src = this.options.url;
     }
 
-    // Show iframe wrapper.
+    // Reveal the container.
+    this.el.container.style.display = "block";
+
+    // Force a reflow so the open transition runs from the closed state.
+    void this.el.iframeWrapper.offsetWidth;
+
+    // Start the open animation.
     this.el.iframeWrapper.classList.add("knowbot-panel-open");
 
     // Accessibility: expose iframe and mark wrapper as a modal dialog.
@@ -520,8 +527,12 @@ class Knowbot {
     // Remove knowbot-open class from body.
     this._bodyClassList.remove("knowbot-open");
 
-    // Hide iframe wrapper.
+    // Return the panel to its closed state.
     this.el.iframeWrapper.classList.remove("knowbot-panel-open");
+
+    // Fully hide the container. The iframe stays mounted to preserve the
+    // conversation.
+    this.el.container.style.display = "none";
 
     // Accessibility: hide iframe and remove dialog role from wrapper.
     this.el.iframe.setAttribute("aria-hidden", "true");
@@ -581,6 +592,7 @@ class Knowbot {
     // Iframe wrapper and close button.
     const container = document.createElement("div");
     container.id = this.id.container;
+    container.style.display = "none";
     const iframeWrapper = document.createElement("div");
     iframeWrapper.id = this.id.iframeWrapper;
     const closeBtn = document.createElement("knowbot-button");
