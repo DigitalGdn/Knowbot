@@ -1,6 +1,6 @@
 /*!
  * Knowbot JavaScript Library
- * Version: 1.3.0
+ * Version: 1.3.1
  * https://www.knowbot.uk
  * Copyright Mike Hudson Foundation
  *
@@ -274,6 +274,13 @@ class Knowbot {
     ) {
       throw new Error(
         `Knowbot: Option "button" must be a string or false, received ${typeof this.options.button}.`,
+      );
+    }
+
+    // Warn that buttonBoxShadow is ignored.
+    if (this.options.buttonBoxShadow !== "none") {
+      console.warn(
+        'Knowbot: Option "buttonBoxShadow" is no longer supported and will be ignored. Floating button shadows cause a display issue in iOS Safari.',
       );
     }
 
@@ -563,6 +570,8 @@ class Knowbot {
       btn.setAttribute("aria-label", this.options.buttonAriaLabel);
       btn.setAttribute("aria-expanded", "false");
       btn.setAttribute("aria-controls", this.id.iframeWrapper);
+      // No shadow, see README.
+      btn.style.setProperty("box-shadow", "none", "important");
       const span = document.createElement("span");
       span.textContent = this.options.button;
       btn.appendChild(span);
@@ -602,7 +611,6 @@ class Knowbot {
         --knowbot-button-border-color: ${this.options.buttonBorderColor};
         --knowbot-button-border-color-hover: ${this.options.buttonBorderColorHover};
         --knowbot-button-border-radius: ${this.options.buttonBorderRadius};
-        --knowbot-button-box-shadow: ${this.options.buttonBoxShadow};
         --knowbot-button-padding: ${this.options.buttonPadding};
         --knowbot-button-distance-bottom: ${this.options.buttonDistanceBottom};
         --knowbot-button-distance-right: ${this.options.buttonDistanceRight};
@@ -758,7 +766,7 @@ Knowbot.defaults = {
   buttonBorderColor: "#7B62DF",
   buttonBorderColorHover: "#2F2B36",
   buttonBorderRadius: "10px",
-  buttonBoxShadow: "0 0.3rem 0.6rem rgba(2, 2, 3, 0.2)",
+  buttonBoxShadow: "none", // Deprecated and ignored.
   buttonFontFamily: "sans-serif",
   buttonFontWeight: "bold",
   buttonFontSize: "16px",

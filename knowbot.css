@@ -1,6 +1,6 @@
 /**
  * Knowbot CSS Stylesheet
- * Version: 1.3.0
+ * Version: 1.3.1
  *
  * Please include this file from the CDN.
  * Knowbot visual customisation is done via the JS configuration options.
@@ -61,7 +61,7 @@
     border-radius: var(--knowbot-button-border-radius);
     border: var(--knowbot-button-border-width) solid
         var(--knowbot-button-border-color);
-    box-shadow: var(--knowbot-button-box-shadow);
+    box-shadow: none !important;
     background-color: var(--knowbot-button-bg-color);
     color: var(--knowbot-button-text-color);
     transition: all 250ms ease;

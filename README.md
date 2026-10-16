@@ -92,7 +92,7 @@ Please note that only `url` is required. The script will 'just work', only add o
 | `buttonBorderColor` | `string` | `'#2f2b36'` | Button border colour |
 | `buttonBorderColorHover` | `string` | `'#2f2b36'` | Button border colour on hover |
 | `buttonBorderRadius` | `string` | `'10px'` | Button border radius |
-| `buttonBoxShadow` | `string` | `'0 0.3rem 0.6rem rgba(2, 2, 3, 0.2)'` | Button box shadow |
+| `buttonBoxShadow` | `string` | `'none'` | **Deprecated and ignored.** See [Why doesn't the floating button have a shadow?](#why-doesnt-the-floating-button-have-a-shadow) |
 | `buttonFontFamily` | `string` | `'inherit'` | Button font family, defaults to your page body font |
 | `buttonFontWeight` | `string` | `'bold'` | Button font weight, e.g. 'bold', '600' |
 | `buttonFontSize` | `string` | `'16px'` | Button font size for small/medium screens |
@@ -125,6 +125,10 @@ Yes, you can pass these as a string for example `'var(--accent)'`.
 **Can I disable Knowbot on certain pages?**
 
 Yes, pass an array of paths to `excludePaths` to disable Knowbot on certain pages. You can use `*` for wildcard matching at the end of the path. For example `['/example/*']` to disable Knowbot on a parent page and its sub-pages. To add an additional exclusion, an example would be `['/example/*', '/another-example/*']`.
+
+**Why doesn't the floating button have a shadow?**
+
+A shadow on the floating 'Ask Me' button triggers a display issue in iPhone Safari (iOS 26). When scrolling, a solid strip appears above and below Safari's bottom address bar instead of the page showing blurred behind it. Knowbot no longer supports adding a shadow and sets it to none.
 
 **Why should I use the CDN URL to host the CSS and javascript?**
 
